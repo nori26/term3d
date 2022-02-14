@@ -51,7 +51,7 @@ t_vect	*input(char *filename)
 	t_clist	*lines;
 
 	(void)lines;
-	infile = fopen(filename, "r");
+	infile = ft_fopen(filename, "r");
 	lines = input_lines(infile);
 	// validate_lines(lines);
 	return (NULL);
