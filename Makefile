@@ -64,6 +64,7 @@ $(OBJDIR)/%.o : %.c
 t	: $(OBJS) $(LIBFT)
 	ar -rcs test.a $(OBJS)
 	gcc $(IOPTIONS) input_test.c test.a $(LIBFT) -o test
+	diff <(./test) <(cat torus.3d)
 
 $(NAME)	: $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(IOPTIONS) $(LOPTIONS) $(OBJS) $(LIBS) -o $@

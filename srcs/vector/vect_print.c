@@ -3,5 +3,5 @@
 
 void	vect_print(t_vect *vect)
 {
-	printf("%f,%f,%f\n", vect->x, vect->y, vect->z);
+	printf("%.15g,%.15g,%.15g\n", vect->x, vect->y, vect->z);
 }

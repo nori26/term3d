@@ -89,6 +89,7 @@ void	remove_empty_line(t_clist *lines)
 t_clist	*input_raw_lines(FILE *infile)
 {
 	char	*line;
+	char	*trimed_endl;
 	size_t	n;
 	t_clist	*lines;
 
@@ -97,7 +98,9 @@ t_clist	*input_raw_lines(FILE *infile)
 	line = NULL;
 	while (ft_getline(&line, &n, infile) != -1)
 	{
-		or_exit(ft_clstnew_add_back(lines, line));
+		trimed_endl = or_exit(ft_strtrim(line, "\n"));
+		or_exit(ft_clstnew_add_back(lines, trimed_endl));
+		free(line);
 		line = NULL;
 	}
 	return (lines);
