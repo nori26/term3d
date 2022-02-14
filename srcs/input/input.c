@@ -10,7 +10,8 @@
 #include "vector.h"
 #include "wrapper.h"
 
-#define NUM_OF_DIMENSIONS 3
+#define NUM_OF_DIMENSIONS	3
+#define FILE_EXTENSION		".3d"
 
 void	*or_exit(void *allocated)
 {
@@ -161,13 +162,43 @@ t_points	parse_lines_to_vector(t_clist *lines)
 	return (points);
 }
 
+bool	is_valid_extension(char *filename)
+{
+	const size_t	extension_size = strlen(FILE_EXTENSION);
+	char			*extension;
+
+	extension = ft_strtail(filename, extension_size);
+	return (ft_streq(extension, FILE_EXTENSION));
+}
+
+bool	has_extension(char *filename)
+{
+	const size_t	extension_size = strlen(FILE_EXTENSION);
+	const char		*tail = ft_strtail(filename, extension_size + 1);
+	const bool		is_hidden_file = ft_streq(filename, FILE_EXTENSION) || \
+									ft_streq(tail, "/"FILE_EXTENSION);
+
+	return (!is_hidden_file);
+}
+
+void	validate_filename(char *filename)
+{
+	if (has_extension(filename) && is_valid_extension(filename))
+		return ;
+	else
+	{
+		fprintf(stderr, "%s is invalid file", filename);
+		exit(EXIT_FAILURE);
+	}
+}
+
 t_points	input(char *filename)
 {
 	t_points	points;
 	FILE		*infile;
 	t_clist		*lines;
 
-	// validate_filename();
+	validate_filename(filename);
 	infile = ft_fopen(filename, "r");
 	lines = input_lines(infile);
 	validate_lines(lines);

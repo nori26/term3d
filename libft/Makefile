@@ -134,6 +134,7 @@ STRSRC	=\
 	./srcs/string/str/ft_strrchr.c\
 	./srcs/string/str/ft_strsep.c\
 	./srcs/string/str/ft_strsjoin.c\
+	./srcs/string/str/ft_strtail.c\
 	./srcs/string/str/ft_strtrim.c\
 	./srcs/string/str/ft_substr.c\
 

@@ -21,6 +21,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strsep(char **strptr, char *delims);
 char	*ft_strsjoin(char **strs);
+char	*ft_strtail(char *src, size_t tail_len);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_atoi(const char *str);

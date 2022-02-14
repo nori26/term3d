@@ -63,7 +63,7 @@ $(OBJDIR)/%.o : %.c
 
 t	: $(OBJS) $(LIBFT)
 	ar -rcs test.a $(OBJS)
-	gcc $(IOPTIONS) input_test.c test.a $(LIBFT) -o test
+	gcc -g -fsanitize=address $(IOPTIONS) input_test.c test.a $(LIBFT) -o test
 
 $(NAME)	: $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(IOPTIONS) $(LOPTIONS) $(OBJS) $(LIBS) -o $@
