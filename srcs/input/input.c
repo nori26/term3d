@@ -4,26 +4,26 @@
 #include <errno.h>
 #include "ft_list.h"
 #include "vector.h"
-#include "term3d.h"
+#include "wrapper.h"
 
-bool	validate_infile(FILE *infile)
-{
-	char	*line;
-	size_t	n;
+// bool	validate_infile(FILE *infile)
+// {
+// 	char	*line;
+// 	size_t	n;
 
-	n = 0;
-	line = NULL;
-	while (true)
-	{
-		errno = 0;
-		if (ft_getline(&line, &n, infile) == -1)
-			break ;
-		is_valid_num_of_fields(infile);
-		free(line);
-		line = NULL;
-	}
-	return (errno == 0);
-}
+// 	n = 0;
+// 	line = NULL;
+// 	while (true)
+// 	{
+// 		errno = 0;
+// 		if (ft_getline(&line, &n, infile) == -1)
+// 			break ;
+// 		is_valid_num_of_fields(infile);
+// 		free(line);
+// 		line = NULL;
+// 	}
+// 	return (errno == 0);
+// }
 
 t_clist	*input_lines(FILE *infile)
 {
@@ -42,6 +42,7 @@ t_clist	*input_lines(FILE *infile)
 			exit(EXIT_FAILURE);
 		line = NULL;
 	}
+	return (lines);
 }
 
 t_vect	*input(char *filename)
@@ -49,7 +50,9 @@ t_vect	*input(char *filename)
 	FILE	*infile;
 	t_clist	*lines;
 
+	(void)lines;
 	infile = fopen(filename, "r");
 	lines = input_lines(infile);
-	validate_lines(lines);
+	// validate_lines(lines);
+	return (NULL);
 }

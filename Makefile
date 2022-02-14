@@ -34,7 +34,7 @@ SRC3	=\
 	srcs/wrapper/ft_fopen.c\
 	srcs/wrapper/ft_getline.c\
 
-SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC2)
+SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)
 OBJS		:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRCS:.c=.o))
 OBJSUBDIRS	:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(ALLDIRS))
 VPATH 		:= $(shell find $(SRCDIR) -type d | tr '\n' ':')
