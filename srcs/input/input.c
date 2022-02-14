@@ -54,5 +54,6 @@ t_vect	*input(char *filename)
 	infile = ft_fopen(filename, "r");
 	lines = input_lines(infile);
 	// validate_lines(lines);
+	ft_clst_clear(&lines, free);
 	return (NULL);
 }
