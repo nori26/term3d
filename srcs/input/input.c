@@ -1,3 +1,4 @@
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -9,6 +10,16 @@
 #include "wrapper.h"
 
 #define NUM_OF_DIMENSIONS 3
+
+void	*or_exit(void *allocated)
+{
+	if (!allocated)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+	return (allocated);
+}
 
 void	validate_num_of_fields(char *line, size_t line_no)
 {
@@ -25,6 +36,21 @@ void	validate_num_of_fields(char *line, size_t line_no)
 	}
 }
 
+void	validate_coordinates(char *line, size_t line_no)
+{
+	char	*num;
+	char	*remained;
+
+	remained = or_exit(ft_strdup(line));
+	while (get_next_token(&remained, ",", &num))
+	{
+		if (!strlen(num))
+			exit(EXIT_FAILURE);
+		ft_strtod(num);
+	}
+	free(remained);
+}
+
 void	validate_lines(t_clist *lines)
 {
 	char	*line;
@@ -36,9 +62,11 @@ void	validate_lines(t_clist *lines)
 	{
 		line_no++;
 		line = lines->data;
-		validate_num_of_fields(line, line_no);
-		// validate_fields(line, line_no);
 		lines = lines->next;
+		if (!*line)
+			continue ;
+		validate_num_of_fields(line, line_no);
+		validate_coordinates(line, line_no);
 	}
 }
 
@@ -48,15 +76,12 @@ t_clist	*input_lines(FILE *infile)
 	size_t	n;
 	t_clist	*lines;
 
-	lines = ft_clstnew(NULL);
-	if(!lines)
-		exit(EXIT_FAILURE);
+	lines = or_exit(ft_clstnew(NULL));
 	n = 0;
 	line = NULL;
 	while (ft_getline(&line, &n, infile) != -1)
 	{
-		if (!ft_clstnew_add_back(lines, line))
-			exit(EXIT_FAILURE);
+		or_exit(ft_clstnew_add_back(lines, line));
 		line = NULL;
 	}
 	return (lines);

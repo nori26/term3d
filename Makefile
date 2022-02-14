@@ -33,6 +33,7 @@ SRC2	=\
 SRC3	=\
 	srcs/wrapper/ft_fopen.c\
 	srcs/wrapper/ft_getline.c\
+	srcs/wrapper/ft_strtod.c\
 
 SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)
 OBJS		:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRCS:.c=.o))

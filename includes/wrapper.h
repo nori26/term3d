@@ -7,6 +7,7 @@ enum
 };
 
 FILE	*ft_fopen(char *filename, char *modes);
+double	ft_strtod(char *nptr);
 int		ft_getline(char **lineptr, size_t *n, FILE *stream);
 
 #endif
