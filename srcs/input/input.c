@@ -162,28 +162,20 @@ t_points	parse_lines_to_vector(t_clist *lines)
 	return (points);
 }
 
-bool	is_valid_extension(char *filename)
+bool	is_valid_file_extension(char *filename)
 {
 	const size_t	extension_size = strlen(FILE_EXTENSION);
-	char			*extension;
-
-	extension = ft_strtail(filename, extension_size);
-	return (ft_streq(extension, FILE_EXTENSION));
-}
-
-bool	has_extension(char *filename)
-{
-	const size_t	extension_size = strlen(FILE_EXTENSION);
+	const char		*extension = ft_strtail(filename, extension_size);
 	const char		*tail = ft_strtail(filename, extension_size + 1);
 	const bool		is_hidden_file = ft_streq(filename, FILE_EXTENSION) || \
 									ft_streq(tail, "/"FILE_EXTENSION);
 
-	return (!is_hidden_file);
+	return (!is_hidden_file && ft_streq(extension, FILE_EXTENSION));
 }
 
 void	validate_filename(char *filename)
 {
-	if (has_extension(filename) && is_valid_extension(filename))
+	if (is_valid_file_extension(filename))
 		return ;
 	else
 	{

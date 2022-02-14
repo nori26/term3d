@@ -5,8 +5,7 @@
 typedef struct s_vect t_vect;
 typedef struct s_clist t_clist;
 
-bool		has_extension(char *filename);
-bool		is_valid_extension(char *filename);
+bool		is_valid_file_extension(char *filename);
 double		get_next_coordinate(char **remained);
 t_clist		*input_lines(FILE *infile);
 t_clist		*input_raw_lines(FILE *infile);
