@@ -187,7 +187,7 @@ void	validate_filename(char *filename)
 		return ;
 	else
 	{
-		fprintf(stderr, "%s is invalid file", filename);
+		fprintf(stderr, "%s is invalid file\n", filename);
 		exit(EXIT_FAILURE);
 	}
 }

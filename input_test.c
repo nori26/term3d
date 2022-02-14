@@ -11,6 +11,12 @@ int main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
+	// points = input("/.3d");
+	// points = input(".3d");
+	// points = input("a/.3d");
+	// points = input("3d");
+	// points = input(".3d.");
+	points = input("..3d");
 	points = input(argv[1]);
 	i = 0;
 	while (i < points.size)
