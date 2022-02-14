@@ -6,6 +6,7 @@
 #include "ft_list.h"
 #include "ft_string.h"
 #include "ft_io.h"
+#include "term3d.h"
 #include "vector.h"
 #include "wrapper.h"
 
@@ -31,7 +32,7 @@ void	validate_num_of_fields(char *line, size_t line_no)
 			fields++;
 	if (fields != NUM_OF_DIMENSIONS)
 	{
-		fprintf(stderr, "line: %zu invalid fields\n", line_no);
+		fprintf(stderr, "line %zu: invalid fields\n", line_no);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -45,7 +46,10 @@ void	validate_coordinates(char *line, size_t line_no)
 	while (get_next_token(&remained, ",", &num))
 	{
 		if (!strlen(num))
+		{
+			fprintf(stderr, "line %zu: invalid coordinate\n", line_no);
 			exit(EXIT_FAILURE);
+		}
 		ft_strtod(num);
 	}
 	free(remained);
@@ -99,24 +103,52 @@ t_clist	*input_lines(FILE *infile)
 	return (lines);
 }
 
-t_vect	*parrse_lines_to_vector(t_clist	*lines)
+double	get_next_coordinate(char **remained)
 {
-	size_t	size;
-	char	*line;
+	char	*num;
 
+	get_next_token(remained, ",", &num);
+	return (ft_strtod(num));
+}
+
+void	parse_coordinate(char *line, t_vect *vect)
+{
+	char	*remained;
+
+	remained = or_exit(ft_strdup(line));
+	vect->x = get_next_coordinate(&remained);
+	vect->y = get_next_coordinate(&remained);
+	vect->z = get_next_coordinate(&remained);
+	free(remained);
+}
+
+t_points	parse_lines_to_vector(t_clist *lines)
+{
+	size_t		i;
+	t_vect		*point;
+	t_points	points;
+	char		*line;
+
+	i = 0;
+	points.size = ft_clst_size(lines);
+	points.points = or_exit(malloc(sizeof(t_vect) * points.size));
 	lines = ft_clstfirst(lines);
 	while (!ft_clst_isend(lines))
 	{
 		line = lines->data;
+		point = &points.points[i];
+		parse_coordinate(line, point);
 		lines = lines->next;
+		i++;
 	}
+	return (points);
 }
 
-t_vect	*input(char *filename)
+t_points	input(char *filename)
 {
-	t_vect	*points;
-	FILE	*infile;
-	t_clist	*lines;
+	t_points	points;
+	FILE		*infile;
+	t_clist		*lines;
 
 	(void)lines;
 	(void)points;
@@ -125,7 +157,7 @@ t_vect	*input(char *filename)
 	lines = input_lines(infile);
 	remove_empty_line(lines);
 	validate_lines(lines);
-	points = parse_lines_to_vector();
+	points = parse_lines_to_vector(lines);
 	ft_clst_clear(&lines, free);
-	return (NULL);
+	return (points);
 }

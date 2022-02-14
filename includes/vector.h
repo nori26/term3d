@@ -1,6 +1,6 @@
 #ifndef VECTOR_H
 # define VECTOR_H
-typedef struct
+typedef struct s_vect
 {
 	double	x;
 	double	y;
