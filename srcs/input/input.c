@@ -159,5 +159,6 @@ t_points	input(char *filename)
 	validate_lines(lines);
 	points = parse_lines_to_vector(lines);
 	ft_clst_clear(&lines, free);
+	fclose(infile);
 	return (points);
 }
