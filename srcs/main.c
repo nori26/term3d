@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include "vector.h"
 #define PI 3.141592653589793
 #define FOV	60
 #define SCREEN_SIZE 150

@@ -4,28 +4,37 @@ SHELL		:= /bin/bash
 CC			:= gcc
 CFLAGS		:= -Wall -Werror -Wextra -MMD -MP
 IOPTIONS	= $(addprefix -I , $(INCLUDES))
-LIBS		:= -lm
+LOPTIONS	= -L$(LIBFTDIR)
+LIBS		:= -lm -lft
 
 SRCDIR		:= srcs
 OBJDIR		:= ./obj
-# LIBFTDIR	:= ./libft
-# LIBFT		:= $(LIBFTDIR)/libft.a
+LIBFTDIR	:= ./libft
+LIBFT		:= $(LIBFTDIR)/libft.a
 
 INCLUDE		:= ./includes
 LIBINCLUDE	:= $(LIBFTDIR)/includes
-INCLUDES	:= $(INCLUDE)
+INCLUDES	:= $(INCLUDE) $(LIBINCLUDE)
 
-DIR1		:= $(SRCDIR)
+DIR1		:= $(SRCDIR)/vector
+DIR2		:= $(SRCDIR)/input
+DIR3		:= $(SRCDIR)/wrapper
 ALLDIRS		:= $(shell find srcs -mindepth 1 -type d)
 
-# MAIN		:= srcs/main.c\
+MAIN		:= srcs/main.c\
 
 SRC1	=\
-	srcs/test.c\
-	srcs/vector_utils.c\
-	srcs/vector_utils2.c\
+	srcs/vector/vector_utils.c\
+	srcs/vector/vector_utils2.c\
 
-SRCS		:= $(SRC1)
+SRC2	=\
+	srcs/input/input.c\
+
+SRC3	=\
+	srcs/wrapper/ft_fopen.c\
+	srcs/wrapper/ft_getline.c\
+
+SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC2)
 OBJS		:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRCS:.c=.o))
 OBJSUBDIRS	:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(ALLDIRS))
 VPATH 		:= $(shell find $(SRCDIR) -type d | tr '\n' ':')
@@ -41,17 +50,17 @@ RESET		:= \033[0;39m
 # DEPENDS	= $(shell basename -a $(B_SRCS:.c=.d) $(LIBSRCS:.c=.d) | awk -v o=$(OBJDIR) '{print o"/"$$0}')
 # endif
 
-all		: $(NAME)
+all		: _libft $(NAME)
 
 -include $(DEPENDS)
 
 $(OBJDIR)/%.o : %.c
-	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJSUBDIRS)
 	@$(CC) $(CFLAGS) $(IOPTIONS) -c $< -o $@
 	@echo -e "	""$(GREEN)$@$(RESET)"
 
 $(NAME)	: $(LIBFT) $(OBJS)
-	@$(CC) $(CFLAGS) $(IOPTIONS)  $(OBJS) $(LIBS) -o $@
+	@$(CC) $(CFLAGS) $(IOPTIONS) $(LOPTIONS) $(OBJS) $(LIBS) -o $@
 	@echo -e "\n$(PURPLE) build	$(GREEN)$@$(RESET)"
 
 _libft:
@@ -79,12 +88,12 @@ rm_exec	:
 	$(RM) $(NAME) $(LIBFTDIR)/libft.a
 
 add		:
-	bash header.sh "$(DIR1)" $(INCLUDE)/term3d.h
-# bash header.sh "$(DIR2)" $(INCLUDE)/headername2.h
-# bash header.sh "$(DIR3)" $(INCLUDE)/headername3.h
+	bash header.sh "$(DIR1)" $(INCLUDE)/vector.h
+	bash header.sh "$(DIR2)" $(INCLUDE)/input.h
+	bash header.sh "$(DIR3)" $(INCLUDE)/wrapper.h
 	bash make.sh $(DIR1) SRC1
-# bash make.sh $(DIR2) SRC2
-# bash make.sh $(DIR3) SRC3
+	bash make.sh $(DIR2) SRC2
+	bash make.sh $(DIR3) SRC3
 
 re		: fclean all
 

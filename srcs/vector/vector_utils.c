@@ -1,4 +1,4 @@
-#include "term3d.h"
+#include "vector.h"
 
 t_vect			vect_init(double x, double y, double z)
 {
