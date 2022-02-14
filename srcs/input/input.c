@@ -62,11 +62,23 @@ void	validate_lines(t_clist *lines)
 	{
 		line_no++;
 		line = lines->data;
-		lines = lines->next;
-		if (!*line)
-			continue ;
 		validate_num_of_fields(line, line_no);
 		validate_coordinates(line, line_no);
+		lines = lines->next;
+	}
+}
+
+void	remove_empty_line(t_clist *lines)
+{
+	char	*line;
+
+	lines = ft_clstfirst(lines);
+	while (!ft_clst_isend(lines))
+	{
+		line = lines->data;
+		if (!*line)
+			ft_clst_popdel(lines, free);
+		lines = lines->next;
 	}
 }
 
@@ -87,6 +99,19 @@ t_clist	*input_lines(FILE *infile)
 	return (lines);
 }
 
+t_vect	*parrse_lines_to_vector(t_clist	*lines)
+{
+	size_t	size;
+	char	*line;
+
+	lines = ft_clstfirst(lines);
+	while (!ft_clst_isend(lines))
+	{
+		line = lines->data;
+		lines = lines->next;
+	}
+}
+
 t_vect	*input(char *filename)
 {
 	t_vect	*points;
@@ -98,8 +123,9 @@ t_vect	*input(char *filename)
 	// validate_filename();
 	infile = ft_fopen(filename, "r");
 	lines = input_lines(infile);
+	remove_empty_line(lines);
 	validate_lines(lines);
-	// points = parse_lines_to_vector();
+	points = parse_lines_to_vector();
 	ft_clst_clear(&lines, free);
 	return (NULL);
 }
