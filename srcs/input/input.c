@@ -40,9 +40,11 @@ void	validate_num_of_fields(char *line, size_t line_no)
 void	validate_coordinates(char *line, size_t line_no)
 {
 	char	*num;
+	char	*linecpy;
 	char	*remained;
 
-	remained = or_exit(ft_strdup(line));
+	linecpy = or_exit(ft_strdup(line));
+	remained = linecpy;
 	while (get_next_token(&remained, ",", &num))
 	{
 		if (!strlen(num))
@@ -52,7 +54,7 @@ void	validate_coordinates(char *line, size_t line_no)
 		}
 		ft_strtod(num);
 	}
-	free(remained);
+	free(linecpy);
 }
 
 void	validate_lines(t_clist *lines)
@@ -103,6 +105,7 @@ t_clist	*input_raw_lines(FILE *infile)
 		free(line);
 		line = NULL;
 	}
+	free(line);
 	return (lines);
 }
 
@@ -111,6 +114,7 @@ t_clist	*input_lines(FILE *infile)
 	t_clist	*lines;
 
 	lines = input_raw_lines(infile);
+	exit(1);
 	remove_empty_line(lines);
 	return (lines);
 }
@@ -125,13 +129,15 @@ double	get_next_coordinate(char **remained)
 
 void	parse_coordinate(char *line, t_vect *vect)
 {
+	char	*linecpy;
 	char	*remained;
 
-	remained = or_exit(ft_strdup(line));
+	linecpy = or_exit(ft_strdup(line));
+	remained = linecpy;
 	vect->x = get_next_coordinate(&remained);
 	vect->y = get_next_coordinate(&remained);
 	vect->z = get_next_coordinate(&remained);
-	free(remained);
+	free(linecpy);
 }
 
 t_points	parse_lines_to_vector(t_clist *lines)

@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "term3d.h"
 #include "input.h"
 #include "vector.h"
@@ -11,6 +12,7 @@ int main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	points = input(argv[1]);
+	exit(1);
 	i = 0;
 	while (i < points.size)
 	{
@@ -18,4 +20,5 @@ int main(int argc, char **argv)
 		vect_print(vect);
 		i++;
 	}
+	free(points.points);
 }
