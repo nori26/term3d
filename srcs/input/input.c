@@ -114,7 +114,6 @@ t_clist	*input_lines(FILE *infile)
 	t_clist	*lines;
 
 	lines = input_raw_lines(infile);
-	exit(1);
 	remove_empty_line(lines);
 	return (lines);
 }
