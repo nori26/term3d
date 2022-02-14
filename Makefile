@@ -24,6 +24,7 @@ ALLDIRS		:= $(shell find srcs -mindepth 1 -type d)
 MAIN		:= srcs/main.c\
 
 SRC1	=\
+	srcs/vector/vect_print.c\
 	srcs/vector/vector_utils.c\
 	srcs/vector/vector_utils2.c\
 
@@ -59,6 +60,10 @@ $(OBJDIR)/%.o : %.c
 	@mkdir -p $(OBJSUBDIRS)
 	@$(CC) $(CFLAGS) $(IOPTIONS) -c $< -o $@
 	@echo -e "	""$(GREEN)$@$(RESET)"
+
+t	: $(OBJS) $(LIBFT)
+	ar -rcs test.a $(OBJS)
+	gcc $(IOPTIONS) input_test.c test.a $(LIBFT) -o test
 
 $(NAME)	: $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(IOPTIONS) $(LOPTIONS) $(OBJS) $(LIBS) -o $@

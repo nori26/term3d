@@ -5,8 +5,9 @@
 typedef struct s_vect t_vect;
 typedef struct s_clist t_clist;
 
-double		get_next_coordinate(char *remained);
+double		get_next_coordinate(char **remained);
 t_clist		*input_lines(FILE *infile);
+t_clist		*input_raw_lines(FILE *infile);
 t_points	input(char *filename);
 t_points	parse_lines_to_vector(t_clist *lines);
 void		*or_exit(void *allocated);
