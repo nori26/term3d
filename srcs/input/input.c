@@ -86,7 +86,7 @@ void	remove_empty_line(t_clist *lines)
 	}
 }
 
-t_clist	*input_lines(FILE *infile)
+t_clist	*input_raw_lines(FILE *infile)
 {
 	char	*line;
 	size_t	n;
@@ -100,6 +100,15 @@ t_clist	*input_lines(FILE *infile)
 		or_exit(ft_clstnew_add_back(lines, line));
 		line = NULL;
 	}
+	return (lines);
+}
+
+t_clist	*input_lines(FILE *infile)
+{
+	t_clist	*lines;
+
+	lines = input_raw_lines(infile);
+	remove_empty_line(lines);
 	return (lines);
 }
 
@@ -150,12 +159,9 @@ t_points	input(char *filename)
 	FILE		*infile;
 	t_clist		*lines;
 
-	(void)lines;
-	(void)points;
 	// validate_filename();
 	infile = ft_fopen(filename, "r");
 	lines = input_lines(infile);
-	remove_empty_line(lines);
 	validate_lines(lines);
 	points = parse_lines_to_vector(lines);
 	ft_clst_clear(&lines, free);
