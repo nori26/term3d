@@ -30,6 +30,7 @@ void	init_screen(char screen[][SCREEN_SIZE])
 {
 	size_t	i;
 
+	i = 0;
 	while (i < SCREEN_SIZE)
 	{
 		memset(screen[i], ' ', SCREEN_SIZE);
