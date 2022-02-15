@@ -1,5 +1,5 @@
 #include <math.h>
-#include "term3d.h"
+#include "vector.h"
 
 double			dot(t_vect v1, t_vect v2)
 {
