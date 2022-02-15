@@ -1,16 +1,13 @@
-#include "term3d.h"
-#include <stdio.h>
-#include <stddef.h>
-#include <stdbool.h>
-#include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 #include "vector.h"
-#define PI 3.141592653589793
-#define FOV	60
-#define SCREEN_SIZE 150
+#include "term3d.h"
+#include "input.h"
 
-void	print(bool screen[SCREEN_SIZE][SCREEN_SIZE])
+void	print_screen(char screen[][SCREEN_SIZE])
 {
 	size_t	x;
 	size_t	y;
@@ -21,54 +18,104 @@ void	print(bool screen[SCREEN_SIZE][SCREEN_SIZE])
 		x = 0;
 		while (x < SCREEN_SIZE)
 		{
-			if (screen[y][x])
-				printf(".");
-			else
-				printf(" ");
+			putc(screen[y][x], stdout);
 			x++;
 		}
-		puts("");
+		putc('\n', stdout);
 		y++;
 	}
 }
 
-
-int	main()
+void	init_screen(char screen[][SCREEN_SIZE])
 {
-	FILE	*file;
-	t_vect	p;
-	t_vect	unit;
-	ssize_t	offset = SCREEN_SIZE / 2;
-	const double	cam_to_screen = SCREEN_SIZE;
-	double	x = 1.544456534909866;
-	double	y = 2.5718969675658103;
-	double	z = 5;
-	bool	screen[SCREEN_SIZE][SCREEN_SIZE] = {};
-	char *line;
-	char *tmp;
-	size_t	n = 0;
+	size_t	i;
 
-	x *= 10 - cam_to_screen;
-	y *= 10;
-	z *= 10;
-	file = fopen("torus.3d", "r");
-	line = NULL;
-
-	while (getline(&line, &n, file) != -1)
+	while (i < SCREEN_SIZE)
 	{
-		tmp = line;
-		x = atof(strsep(&tmp, ",")) * 10  - cam_to_screen;
-		y = atof(strsep(&tmp, ",")) * 10;
-		z = atof(strsep(&tmp, ",")) * 10;
-		p = vect_init(x, y, z);
-		unit = vect_unit(p);
-		p = vect_mult(unit, cam_to_screen);
-		if (p.y < SCREEN_SIZE / 2 && p.z < SCREEN_SIZE / 2)
-			screen[(ssize_t)p.z + offset][(ssize_t)p.y + offset] = true;
-		free(line);
-		line = NULL;
+		memset(screen[i], ' ', SCREEN_SIZE);
+		i++;
 	}
-	print(screen);
-	printf("%f %f", p.y, p.z);
+}
 
+void	convert_vect_to_screen_coordinate(t_vect *vect, ssize_t *y, ssize_t *z)
+{
+	t_vect	unit;
+	t_vect	coordinate;
+
+	unit = vect_unit(*vect);
+	coordinate = vect_mult(unit, CAM_TO_SCREEN_DIST);
+	*y = coordinate.y;
+	*z = coordinate.z;
+}
+
+bool	is_in_screen(ssize_t y, ssize_t z)
+{
+	return (y < SCREEN_SIZE / 2 && z < SCREEN_SIZE / 2);
+}
+
+void	fill_screen(char screen[][SCREEN_SIZE], ssize_t y, ssize_t z)
+{
+	const ssize_t	offset_origin = SCREEN_SIZE / 2;
+	const ssize_t	screen_y = y + offset_origin;
+	const ssize_t	screen_z = z + offset_origin;
+
+	screen[screen_z][screen_y] = '.';
+}
+
+void	fill_screen_with_points(char screen[][SCREEN_SIZE], t_points *points)
+{
+	size_t	i;
+	ssize_t	y;
+	ssize_t	z;
+	t_vect	*vect;
+
+	i = 0;
+	while (i < points->size)
+	{
+		vect = &points->points[i];
+		convert_vect_to_screen_coordinate(vect, &y, &z);
+		if (is_in_screen(y, z))
+			fill_screen(screen, y, z);
+		i++;
+	}
+}
+
+void	validate_terminal_size()
+{
+	struct winsize ws;
+
+    if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
+	{
+		perror("ioctl");
+		exit(EXIT_FAILURE);
+	}
+	if (ws.ws_col < SCREEN_SIZE)
+	{
+		fprintf(stderr, "terminal width too short");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	output(t_points *points)
+{
+	char	screen[SCREEN_SIZE][SCREEN_SIZE];
+
+	init_screen(screen);
+	fill_screen_with_points(screen, points);
+	print_screen(screen);
+}
+
+int	main(int argc, char **argv)
+{
+	t_points	points;
+
+	if (argc != 2)
+	{
+		fprintf(stderr, "invalid argument");
+		exit(EXIT_FAILURE);
+	}
+	validate_terminal_size();
+	points = input(argv[1]);
+	output(&points);
+	free(points.points);
 }

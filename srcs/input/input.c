@@ -137,6 +137,8 @@ void	parse_coordinate(char *line, t_vect *vect)
 	vect->x = get_next_coordinate(&remained);
 	vect->y = get_next_coordinate(&remained);
 	vect->z = get_next_coordinate(&remained);
+	*vect = vect_mult(*vect, SCALE_TO_INT);
+	vect->x -= CAM_TO_SCREEN_DIST;
 	free(linecpy);
 }
 
