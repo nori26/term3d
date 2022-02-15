@@ -50,7 +50,8 @@ void	convert_vect_to_screen_coordinate(t_vect *vect, ssize_t *y, ssize_t *z)
 
 bool	is_in_screen(ssize_t y, ssize_t z)
 {
-	return (y < SCREEN_SIZE / 2 && z < SCREEN_SIZE / 2);
+	return (-SCREEN_SIZE / 2 < y && y < SCREEN_SIZE / 2  && \
+			-SCREEN_SIZE / 2 < z && z < SCREEN_SIZE / 2);
 }
 
 void	fill_screen(char screen[][SCREEN_SIZE], ssize_t y, ssize_t z)
