@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/time.h>
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
@@ -79,6 +80,6 @@ _Noreturn void	draw_object(t_points *points)
 		rotate_z(points);
 		fill_screen_with_points(screen, points);
 		print_screen(screen);
-		usleep(100000);
+		usleep(10000);
 	}
 }
