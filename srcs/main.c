@@ -10,8 +10,6 @@
 
 char	get_screen_char(size_t density)
 {
-	// const char		*set = " coosssxxxo";
-	// const char		*set = " .,-~:;=!*#.";
 	const char		*set = " :;=co+xanm.";
 	const size_t	size = strlen(set);
 	size_t			idx;
@@ -120,7 +118,7 @@ void rotate_z(t_points *points)
 	}
 }
 
-void	output(t_points *points)
+_Noreturn void	output(t_points *points)
 {
 	size_t	screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
