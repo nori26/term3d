@@ -7,16 +7,16 @@
 #include "term3d.h"
 #include "input.h"
 
-void	print_screen(char screen[][SCREEN_SIZE])
+void	print_screen(char screen[][SCREEN_WIDTH])
 {
 	size_t	x;
 	size_t	y;
 
 	y = 0;
-	while (y < SCREEN_SIZE)
+	while (y < SCREEN_HEIGHT)
 	{
 		x = 0;
-		while (x < SCREEN_SIZE)
+		while (x < SCREEN_WIDTH)
 		{
 			putc(screen[y][x], stdout);
 			x++;
@@ -26,14 +26,14 @@ void	print_screen(char screen[][SCREEN_SIZE])
 	}
 }
 
-void	init_screen(char screen[][SCREEN_SIZE])
+void	init_screen(char screen[][SCREEN_WIDTH])
 {
 	size_t	i;
 
 	i = 0;
-	while (i < SCREEN_SIZE)
+	while (i < SCREEN_HEIGHT)
 	{
-		memset(screen[i], ' ', SCREEN_SIZE);
+		memset(screen[i], ' ', SCREEN_WIDTH);
 		i++;
 	}
 }
@@ -51,20 +51,21 @@ void	convert_vect_to_screen_coordinate(t_vect *vect, ssize_t *y, ssize_t *z)
 
 bool	is_in_screen(ssize_t y, ssize_t z)
 {
-	return (-SCREEN_SIZE / 2 < y && y < SCREEN_SIZE / 2  && \
-			-SCREEN_SIZE / 2 < z && z < SCREEN_SIZE / 2);
+	return (-SCREEN_WIDTH / 2 < y && y < SCREEN_WIDTH / 2  && \
+			-SCREEN_HEIGHT / 2 < z && z < SCREEN_HEIGHT / 2);
 }
 
-void	fill_screen(char screen[][SCREEN_SIZE], ssize_t y, ssize_t z)
+void	fill_screen(char screen[][SCREEN_WIDTH], ssize_t y, ssize_t z)
 {
-	const ssize_t	offset_origin = SCREEN_SIZE / 2;
-	const ssize_t	screen_y = y + offset_origin;
-	const ssize_t	screen_z = z + offset_origin;
+	const ssize_t	offset_origin_h = SCREEN_HEIGHT / 2;
+	const ssize_t	offset_origin_w = SCREEN_WIDTH / 2;
+	const ssize_t	screen_y = y + offset_origin_w;
+	const ssize_t	screen_z = z + offset_origin_h;
 
 	screen[screen_z][screen_y] = '.';
 }
 
-void	fill_screen_with_points(char screen[][SCREEN_SIZE], t_points *points)
+void	fill_screen_with_points(char screen[][SCREEN_WIDTH], t_points *points)
 {
 	size_t	i;
 	ssize_t	y;
@@ -91,7 +92,7 @@ void	validate_terminal_size()
 		perror("ioctl");
 		exit(EXIT_FAILURE);
 	}
-	if (ws.ws_col < SCREEN_SIZE)
+	if (ws.ws_col < SCREEN_WIDTH)
 	{
 		fprintf(stderr, "terminal width too short");
 		exit(EXIT_FAILURE);
@@ -100,7 +101,7 @@ void	validate_terminal_size()
 
 void	output(t_points *points)
 {
-	char	screen[SCREEN_SIZE][SCREEN_SIZE];
+	char	screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 	init_screen(screen);
 	fill_screen_with_points(screen, points);

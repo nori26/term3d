@@ -29,7 +29,9 @@ SRC1	=\
 	srcs/vector/vector_utils2.c\
 
 SRC2	=\
+	srcs/input/centering.c\
 	srcs/input/input.c\
+	srcs/input/scaling.c\
 
 SRC3	=\
 	srcs/wrapper/ft_fopen.c\

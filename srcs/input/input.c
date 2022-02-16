@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <errno.h>
+#include "input.h"
 #include "ft_list.h"
 #include "ft_string.h"
 #include "ft_io.h"
@@ -137,8 +138,6 @@ void	parse_coordinate(char *line, t_vect *vect)
 	vect->x = get_next_coordinate(&remained);
 	vect->y = get_next_coordinate(&remained);
 	vect->z = get_next_coordinate(&remained);
-	*vect = vect_mult(*vect, SCALE_TO_INT);
-	vect->x -= CAM_TO_SCREEN_DIST;
 	free(linecpy);
 }
 
@@ -151,6 +150,8 @@ t_points	parse_lines_to_vector(t_clist *lines)
 
 	i = 0;
 	points.size = ft_clst_size(lines);
+	if (!points.size)
+		exit(EXIT_SUCCESS);
 	points.points = or_exit(malloc(sizeof(t_vect) * points.size));
 	lines = ft_clstfirst(lines);
 	while (!ft_clst_isend(lines))
@@ -185,6 +186,20 @@ void	validate_filename(char *filename)
 		exit(EXIT_FAILURE);
 	}
 }
+void	print_points(t_points points)
+{
+	size_t	i;
+	t_vect	*vect;
+
+	i = 0;
+	while (i < points.size)
+	{
+		vect = &points.points[i];
+		vect_print(vect);
+		i++;
+	}
+	exit(0);
+}
 
 t_points	input(char *filename)
 {
@@ -197,7 +212,13 @@ t_points	input(char *filename)
 	lines = input_lines(infile);
 	validate_lines(lines);
 	points = parse_lines_to_vector(lines);
+	centering(&points);
+	scaling(&points);
+	// print_points(points);
+	// 	*vect = vect_mult(*vect, SCALE_TO_INT);
+	// vect->x -= CAM_TO_SCREEN_DIST;
 	ft_clst_clear(&lines, free);
 	fclose(infile);
+	// exit(0);
 	return (points);
 }
