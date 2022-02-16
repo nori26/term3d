@@ -8,8 +8,22 @@
 #include "term3d.h"
 #include "input.h"
 
-void	print_screen(char screen[][SCREEN_WIDTH])
+char	get_screen_char(size_t density)
 {
+	const char		*set = " .,-~:;=!*#$@";
+	const size_t	size = strlen(set);
+	size_t			idx;
+
+	if (density >= size)
+		idx = size - 1;
+	else
+		idx = density;
+	return (set[idx]);
+}
+
+void	print_screen(size_t screen[][SCREEN_WIDTH])
+{
+	char	c;
 	size_t	x;
 	size_t	y;
 
@@ -20,22 +34,23 @@ void	print_screen(char screen[][SCREEN_WIDTH])
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			putc(screen[y][x], stdout);
+			c = get_screen_char(screen[y][x]);
+			putchar(c);
 			x++;
 		}
-		putc('\n', stdout);
+		putchar('\n');
 		y++;
 	}
 }
 
-void	init_screen(char screen[][SCREEN_WIDTH])
+void	init_screen(size_t screen[][SCREEN_WIDTH])
 {
 	size_t	i;
 
 	i = 0;
 	while (i < SCREEN_HEIGHT)
 	{
-		memset(screen[i], ' ', SCREEN_WIDTH);
+		memset(screen[i], 0, SCREEN_WIDTH * sizeof(size_t));
 		i++;
 	}
 }
@@ -57,30 +72,28 @@ bool	is_in_screen(ssize_t y, ssize_t z)
 			-SCREEN_HEIGHT / 2 < z && z < SCREEN_HEIGHT / 2);
 }
 
-void	fill_screen(char screen[][SCREEN_WIDTH], ssize_t y, ssize_t z)
+void	fill_screen(size_t screen[][SCREEN_WIDTH], ssize_t y, ssize_t z)
 {
 	const ssize_t	offset_origin_h = SCREEN_HEIGHT / 2;
 	const ssize_t	offset_origin_w = SCREEN_WIDTH / 2;
 	const ssize_t	screen_y = y + offset_origin_w;
 	const ssize_t	screen_z = z + offset_origin_h;
 
-	screen[screen_z][screen_y] = '.';
+	screen[screen_z][screen_y]++;
 }
 
-void	fill_screen_with_points(char screen[][SCREEN_WIDTH], t_points *points)
+void	fill_screen_with_points(size_t screen[][SCREEN_WIDTH], t_points *points)
 {
 	size_t	i;
-	ssize_t	y;
-	ssize_t	z;
 	t_vect	*vect;
 
 	i = 0;
 	while (i < points->size)
 	{
 		vect = &points->points[i];
-		convert_vect_to_screen_coordinate(vect, &y, &z);
-		if (is_in_screen(y, z))
-			fill_screen(screen, y, z);
+		// convert_vect_to_screen_coordinate(vect, &y, &z);
+		if (is_in_screen(vect->y, vect->z))
+			fill_screen(screen, vect->y, vect->z);
 		i++;
 	}
 }
@@ -118,9 +131,9 @@ void rotate_z(t_points *points)
 
 void	output(t_points *points)
 {
-	char	screen[SCREEN_HEIGHT][SCREEN_WIDTH];
+	size_t	screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
-	while (1)
+	while (true)
 	{
 		init_screen(screen);
 		rotate_z(points);

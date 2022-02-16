@@ -24,6 +24,7 @@ void		get_max_value(t_points *points, t_vect *max);
 void		get_min_value(t_points *points, t_vect *min);
 void		move_points_to_center(t_points *points, t_vect *offset);
 void		parse_coordinate(char *line, t_vect *vect);
+void		print_points(t_points points);
 void		remove_empty_line(t_clist *lines);
 void		scale_points(t_points *points, double range);
 void		scaling(t_points *points);

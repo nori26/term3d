@@ -76,7 +76,7 @@ void	scale_points(t_points *points, double range)
 		vect->x *= width_scale;
 		vect->y *= width_scale;
 		vect->z *= height_scale;
-		vect->x -= CAM_TO_SCREEN_DIST;
+		// vect->x -= CAM_TO_SCREEN_DIST;
 		i++;
 	}
 }
