@@ -29,7 +29,7 @@ void	print_screen(size_t screen[][SCREEN_WIDTH])
 	size_t	x;
 	size_t	y;
 
-	printf("\033c");
+	// printf("\033c");
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{
@@ -81,6 +81,7 @@ void	fill_screen_with_points(size_t screen[][SCREEN_WIDTH], t_points *points)
 	i = 0;
 	while (i < points->size)
 	{
+		printf("%zu\n", i);
 		vect = &points->points[i];
 		if (is_in_screen(vect->y, vect->z))
 			fill_screen(screen, vect->y, vect->z);
