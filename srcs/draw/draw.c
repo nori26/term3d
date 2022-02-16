@@ -7,6 +7,7 @@
 #include "term3d.h"
 
 #define TERM_CLEAR "\033c"
+#define PHI			0.02
 
 void	print_screen(t_screen screen)
 {
