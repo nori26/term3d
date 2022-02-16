@@ -23,7 +23,7 @@ void	validate_filename(char *filename)
 		return ;
 	else
 	{
-		fprintf(stderr, "%s is invalid file\n", filename);
+		fprintf(stderr, "%s is invalid file format\n", filename);
 		exit(EXIT_FAILURE);
 	}
 }

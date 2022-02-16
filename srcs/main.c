@@ -3,8 +3,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include "ft_list.h"
-#include "parse.h"
 #include "term3d.h"
+#include "parse.h"
 #include "input.h"
 #include "draw.h"
 

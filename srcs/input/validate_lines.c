@@ -1,12 +1,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
 #include "ft_list.h"
 #include "ft_string.h"
 #include "utils.h"
-#include "term3d.h"
-#include "vector.h"
 #include "wrapper.h"
 
 #define NUM_OF_DIMENSIONS	3
@@ -17,8 +14,11 @@ void	validate_num_of_fields(char *line, size_t line_no)
 
 	fields = 1;
 	while (*line)
-		if (*line++ == ',')
+	{
+		if (*line == ',')
 			fields++;
+		line++;
+	}
 	if (fields != NUM_OF_DIMENSIONS)
 	{
 		fprintf(stderr, "line %zu: invalid fields\n", line_no);

@@ -1,13 +1,9 @@
-#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
-#include <errno.h>
 #include "input.h"
 #include "ft_list.h"
 #include "ft_string.h"
 #include "utils.h"
-#include "term3d.h"
 #include "wrapper.h"
 
 void	remove_empty_line(t_clist *lines)
