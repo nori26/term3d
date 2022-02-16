@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <math.h>
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
-
 
 #define TERM_CLEAR "\033c"
 #define PHI			0.02
@@ -81,6 +79,6 @@ _Noreturn void	draw_object(t_points *points)
 		rotate_z(points);
 		fill_screen_with_points(screen, points);
 		print_screen(screen);
-		usleep(10000);
+		usleep(100000);
 	}
 }
