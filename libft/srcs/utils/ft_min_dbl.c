@@ -1,4 +1,3 @@
-
 double	ft_min_dbl(double a, double b)
 {
 	if (a > b)

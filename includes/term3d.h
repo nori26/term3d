@@ -7,7 +7,7 @@
 # define PHI				0.02
 # include <stddef.h>
 # include "vector.h"
-typedef struct
+typedef struct s_points
 {
 	size_t	size;
 	t_vect	*points;
