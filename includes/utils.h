@@ -1,6 +1,6 @@
 #ifndef UTILS_H
 # define UTILS_H
-# include "term3d.h"
+typedef struct s_points	t_points;
 
 void	*or_exit(void *allocated);
 void	print_points(t_points points);

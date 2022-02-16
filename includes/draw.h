@@ -1,8 +1,10 @@
 #ifndef DRAW_H
 # define DRAW_H
 # include <stdbool.h>
-# include "term3d.h"
-typedef size_t	t_screen[SCREEN_HEIGHT][SCREEN_WIDTH];
+# define SCREEN_HEIGHT	50
+# define SCREEN_WIDTH	65
+typedef struct s_points	t_points;
+typedef size_t			t_screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 _Noreturn void	draw_object(t_points *points);
 bool			is_in_screen(double y, double z);

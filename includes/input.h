@@ -2,9 +2,9 @@
 # define INPUT_H
 # include <stdio.h>
 # include <stdbool.h>
-# include "ft_list.h"
-# include "term3d.h"
-# include "vector.h"
+typedef struct s_points	t_points;
+typedef struct s_clist	t_clist;
+typedef struct s_vect	t_vect;
 
 bool	is_valid_file_extension(char *filename);
 t_clist	*input(char *filename);

@@ -1,7 +1,8 @@
 #ifndef PARSE_H
 # define PARSE_H
-# include "term3d.h"
-# include "ft_list.h"
+typedef struct s_points	t_points;
+typedef struct s_clist	t_clist;
+typedef struct s_vect	t_vect;
 typedef double			(*t_cmp)(double, double);
 
 t_points	parse_lines_to_points(t_clist *lines);
