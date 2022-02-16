@@ -1,4 +1,5 @@
 #include <string.h>
+#include <sys/types.h>
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
