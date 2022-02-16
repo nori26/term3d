@@ -29,7 +29,7 @@ void	print_screen(size_t screen[][SCREEN_WIDTH])
 	size_t	x;
 	size_t	y;
 
-	// printf("\033c");
+	printf("\033c");
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{
@@ -81,7 +81,6 @@ void	fill_screen_with_points(size_t screen[][SCREEN_WIDTH], t_points *points)
 	i = 0;
 	while (i < points->size)
 	{
-		printf("%zu\n", i);
 		vect = &points->points[i];
 		if (is_in_screen(vect->y, vect->z))
 			fill_screen(screen, vect->y, vect->z);
@@ -127,9 +126,9 @@ _Noreturn void	draw_object(t_points *points)
 	while (true)
 	{
 		init_screen(screen);
-		// rotate_z(points);
+		rotate_z(points);
 		fill_screen_with_points(screen, points);
-		// print_screen(screen);
+		print_screen(screen);
 		usleep(10000);
 	}
 }
@@ -146,7 +145,7 @@ int	main(int argc, char **argv)
 	}
 	validate_terminal_size();
 	lines = input(argv[1]);
-	parse_lines_to_points(lines);
+	points = parse_lines_to_points(lines);
 	ft_clst_clear(&lines, free);
 	draw_object(&points);
 	free(points.points);
