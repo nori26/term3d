@@ -11,7 +11,7 @@
 
 static char	get_screen_char(size_t density)
 {
-	const char		*set = " :;=co+xanm.";
+	const char		*set = "#:;=co+xanm.";
 	const size_t	size = strlen(set);
 	size_t			idx;
 
