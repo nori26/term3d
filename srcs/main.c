@@ -10,7 +10,9 @@
 
 char	get_screen_char(size_t density)
 {
-	const char		*set = " .,-~:;=!*#$@";
+	// const char		*set = " coosssxxxo";
+	// const char		*set = " .,-~:;=!*#.";
+	const char		*set = " :;=co+xanm.";
 	const size_t	size = strlen(set);
 	size_t			idx;
 
@@ -27,7 +29,7 @@ void	print_screen(size_t screen[][SCREEN_WIDTH])
 	size_t	x;
 	size_t	y;
 
-	printf("\033[2j");
+	printf("\033c");
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{
@@ -53,17 +55,6 @@ void	init_screen(size_t screen[][SCREEN_WIDTH])
 		memset(screen[i], 0, SCREEN_WIDTH * sizeof(size_t));
 		i++;
 	}
-}
-
-void	convert_vect_to_screen_coordinate(t_vect *vect, ssize_t *y, ssize_t *z)
-{
-	t_vect	unit;
-	t_vect	coordinate;
-
-	unit = vect_unit(*vect);
-	coordinate = vect_mult(unit, CAM_TO_SCREEN_DIST);
-	*y = coordinate.y;
-	*z = coordinate.z;
 }
 
 bool	is_in_screen(ssize_t y, ssize_t z)
