@@ -1,9 +1,9 @@
 #ifndef TERM3D_H
 # define TERM3D_H
-# define SCREEN_HEIGHT		45
-# define SCREEN_WIDTH		60
-# define OBJ_HEIGHT			42
-# define OBJ_WIDTH			57
+# define SCREEN_HEIGHT		30
+# define SCREEN_WIDTH		40
+# define OBJ_HEIGHT			27
+# define OBJ_WIDTH			37
 # define SCREEN_SIZE		60
 # define CAM_TO_SCREEN_DIST	60
 # define SCALE_TO_INT		10
