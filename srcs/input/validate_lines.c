@@ -8,7 +8,7 @@
 
 #define NUM_OF_DIMENSIONS	3
 
-static void	validate_num_of_fields(char *line, size_t line_no)
+static void	validate_num_of_fields(const char *line, size_t line_no)
 {
 	size_t	fields;
 
@@ -26,7 +26,7 @@ static void	validate_num_of_fields(char *line, size_t line_no)
 	}
 }
 
-static void	validate_coordinates(char *line, size_t line_no)
+static void	validate_coordinates(const char *line, size_t line_no)
 {
 	char	*num;
 	char	*linecpy;

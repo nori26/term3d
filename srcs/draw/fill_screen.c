@@ -1,4 +1,3 @@
-#include <sys/types.h>
 #include <string.h>
 #include "draw.h"
 #include "vector.h"

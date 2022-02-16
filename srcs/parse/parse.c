@@ -15,7 +15,7 @@ static double	get_next_coordinate(char **remained)
 	return (ft_strtod(num));
 }
 
-static void	parse_coordinate(char *line, t_vect *vect)
+static void	parse_coordinate(const char *line, t_vect *vect)
 {
 	char	*linecpy;
 	char	*remained;

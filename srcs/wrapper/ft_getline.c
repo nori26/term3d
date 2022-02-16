@@ -4,7 +4,7 @@
 
 int	ft_getline(char **lineptr, size_t *n, FILE *stream)
 {
-	int	ret;
+	ssize_t	ret;
 
 	errno = 0;
 	ret = getline(lineptr, n, stream);

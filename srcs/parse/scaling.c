@@ -17,7 +17,7 @@ static void	get_min_value(t_points *points, t_vect *min)
 	get_max_or_min(points, min, ft_min_dbl);
 }
 
-static double	get_max_range(t_vect *max, t_vect *min)
+static double	get_max_range(const t_vect *max, const t_vect *min)
 {
 	t_vect	range;
 	double	max_range;
