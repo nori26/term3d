@@ -19,6 +19,8 @@ INCLUDES	:= $(INCLUDE) $(LIBINCLUDE)
 DIR1		:= $(SRCDIR)/vector
 DIR2		:= $(SRCDIR)/input
 DIR3		:= $(SRCDIR)/wrapper
+DIR4		:= $(SRCDIR)/parse
+DIR5		:= $(SRCDIR)/utils
 ALLDIRS		:= $(shell find srcs -mindepth 1 -type d)
 
 MAIN		:= srcs/main.c\
@@ -29,16 +31,25 @@ SRC1	=\
 	srcs/vector/vector_utils2.c\
 
 SRC2	=\
-	srcs/input/centering.c\
 	srcs/input/input.c\
-	srcs/input/scaling.c\
+	srcs/input/validate_filename.c\
+	srcs/input/validate_lines.c\
 
 SRC3	=\
 	srcs/wrapper/ft_fopen.c\
 	srcs/wrapper/ft_getline.c\
 	srcs/wrapper/ft_strtod.c\
 
-SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)
+SRC4	=\
+	srcs/parse/centering.c\
+	srcs/parse/parse.c\
+	srcs/parse/scaling.c\
+	srcs/parse/scaling2.c\
+
+SRC5	=\
+	srcs/utils/utils.c\
+
+SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)$(SRC4)$(SRC5)
 OBJS		:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRCS:.c=.o))
 OBJSUBDIRS	:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(ALLDIRS))
 VPATH 		:= $(shell find $(SRCDIR) -type d | tr '\n' ':')
@@ -99,9 +110,13 @@ add		:
 	bash header.sh "$(DIR1)" $(INCLUDE)/vector.h
 	bash header.sh "$(DIR2)" $(INCLUDE)/input.h
 	bash header.sh "$(DIR3)" $(INCLUDE)/wrapper.h
+	bash header.sh "$(DIR4)" $(INCLUDE)/parse.h
+	bash header.sh "$(DIR5)" $(INCLUDE)/utils.h
 	bash make.sh $(DIR1) SRC1
 	bash make.sh $(DIR2) SRC2
 	bash make.sh $(DIR3) SRC3
+	bash make.sh $(DIR4) SRC4
+	bash make.sh $(DIR5) SRC5
 
 re		: fclean all
 

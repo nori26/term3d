@@ -20,7 +20,7 @@ t_vect	get_offest_from_origin(t_points *points)
 	return (offset);
 }
 
-void	move_points_to_center(t_points *points, t_vect *offset)
+void	shift_points_to_center(t_points *points, t_vect *offset)
 {
 	size_t	i;
 	t_vect	*vect;
@@ -34,10 +34,10 @@ void	move_points_to_center(t_points *points, t_vect *offset)
 	}
 }
 
-void	centering(t_points *points)
+void	shift_to_center(t_points *points)
 {
 	t_vect	offset;
 
 	offset = get_offest_from_origin(points);
-	move_points_to_center(points, &offset);
+	shift_points_to_center(points, &offset);
 }

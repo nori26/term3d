@@ -4,6 +4,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <math.h>
+#include "ft_list.h"
+#include "parse.h"
 #include "vector.h"
 #include "term3d.h"
 #include "input.h"
@@ -117,16 +119,16 @@ void	rotate_z(t_points *points)
 	}
 }
 
-_Noreturn void	output(t_points *points)
+_Noreturn void	draw_object(t_points *points)
 {
 	size_t	screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 	while (true)
 	{
 		init_screen(screen);
-		rotate_z(points);
+		// rotate_z(points);
 		fill_screen_with_points(screen, points);
-		print_screen(screen);
+		// print_screen(screen);
 		usleep(10000);
 	}
 }
@@ -134,6 +136,7 @@ _Noreturn void	output(t_points *points)
 int	main(int argc, char **argv)
 {
 	t_points	points;
+	t_clist		*lines;
 
 	if (argc != 2)
 	{
@@ -141,7 +144,9 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	validate_terminal_size();
-	points = input(argv[1]);
-	output(&points);
+	lines = input(argv[1]);
+	parse_lines_to_points(lines);
+	ft_clst_clear(&lines, free);
+	draw_object(&points);
 	free(points.points);
 }

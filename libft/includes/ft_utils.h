@@ -4,6 +4,8 @@
 typedef unsigned long	t_ulong;
 typedef unsigned char	t_uchar;
 
+double	ft_max_dbl(double a, double b);
+double	ft_min_dbl(double a, double b);
 int		ft_setptr(void *dest, void *p);
 int		ft_utoa_len(uint32_t n, char *s, int len);
 int64_t	ft_min(int64_t a, int64_t b);

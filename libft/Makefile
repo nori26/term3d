@@ -140,7 +140,9 @@ STRSRC	=\
 UTILSRC	=\
 	./srcs/utils/ft_free_assign.c\
 	./srcs/utils/ft_labs.c\
+	./srcs/utils/ft_max_dbl.c\
 	./srcs/utils/ft_min.c\
+	./srcs/utils/ft_min_dbl.c\
 	./srcs/utils/ft_setptr.c\
 	./srcs/utils/ft_utoa_len.c\
 
