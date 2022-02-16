@@ -2,7 +2,7 @@
 #include <errno.h>
 #include "stdlib.h"
 
-FILE	*ft_fopen(char *filename, char *modes)
+FILE	*ft_fopen(const char *filename, const char *modes)
 {
 	FILE	*file;
 
