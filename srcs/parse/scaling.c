@@ -4,6 +4,9 @@
 #include "term3d.h"
 #include "vector.h"
 
+#define OBJ_HEIGHT	45
+#define OBJ_WIDTH	60
+
 static void	get_max_value(t_points *points, t_vect *max)
 {
 	get_max_or_min(points, max, ft_max_dbl);
