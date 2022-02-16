@@ -9,7 +9,6 @@ typedef struct s_vect
 
 double	dot(t_vect v1, t_vect v2);
 double	vect_len(t_vect v);
-int		check_parallel(t_vect a, t_vect b, t_vect c);
 t_vect	cross(t_vect v1, t_vect v2);
 t_vect	vect_add(t_vect v1, t_vect v2);
 t_vect	vect_init(double x, double y, double z);
