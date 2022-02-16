@@ -9,7 +9,20 @@
 #define TERM_CLEAR "\033c"
 #define PHI			0.02
 
-void	print_screen(t_screen screen)
+static char	get_screen_char(size_t density)
+{
+	const char		*set = " :;=co+xanm.";
+	const size_t	size = strlen(set);
+	size_t			idx;
+
+	if (density >= size)
+		idx = size - 1;
+	else
+		idx = density;
+	return (set[idx]);
+}
+
+static void	print_screen(t_screen screen)
 {
 	char	c;
 	size_t	x;
@@ -31,7 +44,7 @@ void	print_screen(t_screen screen)
 	}
 }
 
-void	init_screen(t_screen screen)
+static void	init_screen(t_screen screen)
 {
 	size_t	i;
 
@@ -43,7 +56,7 @@ void	init_screen(t_screen screen)
 	}
 }
 
-void	rotate_z(t_points *points)
+static void	rotate_z(t_points *points)
 {
 	size_t	i;
 	double	x;

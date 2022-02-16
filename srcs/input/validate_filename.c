@@ -6,7 +6,7 @@
 
 #define FILE_EXTENSION ".3d"
 
-bool	is_valid_file_extension(char *filename)
+static bool	is_valid_file_extension(char *filename)
 {
 	const size_t	extension_size = strlen(FILE_EXTENSION);
 	const char		*extension = ft_strtail(filename, extension_size);

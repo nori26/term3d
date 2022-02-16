@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "input.h"
 #include "ft_list.h"
 #include "ft_string.h"
+#include "input.h"
 #include "utils.h"
 #include "wrapper.h"
 
-void	remove_empty_line(t_clist *lines)
+static void	remove_empty_line(t_clist *lines)
 {
 	char	*line;
 
@@ -20,7 +20,7 @@ void	remove_empty_line(t_clist *lines)
 	}
 }
 
-t_clist	*input_raw_lines(FILE *infile)
+static t_clist	*input_raw_lines(FILE *infile)
 {
 	char	*line;
 	char	*trimed_endl;
@@ -41,7 +41,7 @@ t_clist	*input_raw_lines(FILE *infile)
 	return (lines);
 }
 
-t_clist	*input_lines(FILE *infile)
+static t_clist	*input_lines(FILE *infile)
 {
 	t_clist	*lines;
 
