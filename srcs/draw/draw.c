@@ -1,15 +1,12 @@
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/ioctl.h>
 #include <unistd.h>
 #include <math.h>
-#include "ft_list.h"
 #include "draw.h"
-#include "parse.h"
 #include "vector.h"
 #include "term3d.h"
-#include "input.h"
+
+#define TERM_CLEAR "\033c"
 
 void	print_screen(t_screen screen)
 {
@@ -17,7 +14,7 @@ void	print_screen(t_screen screen)
 	size_t	x;
 	size_t	y;
 
-	printf("\033c");
+	printf(TERM_CLEAR);
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{

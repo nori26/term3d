@@ -2,7 +2,7 @@
 #include "term3d.h"
 #include "vector.h"
 
-t_vect	get_offest_from_origin(t_points *points)
+static t_vect	get_offest_from_origin(t_points *points)
 {
 	t_vect	offset;
 	t_vect	*vect;
@@ -16,11 +16,11 @@ t_vect	get_offest_from_origin(t_points *points)
 		offset = vect_add(offset, *vect);
 		i++;
 	}
-	offset = vect_mult(offset, 1 / (double)points->size);
+	offset = vect_mult(offset, 1.0 / points->size);
 	return (offset);
 }
 
-void	shift_points_to_center(t_points *points, t_vect *offset)
+static void	shift_points_to_center(t_points *points, t_vect *offset)
 {
 	size_t	i;
 	t_vect	*vect;

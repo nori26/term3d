@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <math.h>
 #include "ft_utils.h"
 #include "parse.h"

@@ -1,15 +1,8 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <sys/types.h>
 #include <string.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <math.h>
 #include "draw.h"
-#include "ft_list.h"
-#include "parse.h"
 #include "vector.h"
 #include "term3d.h"
-#include "input.h"
 
 char	get_screen_char(size_t density)
 {
@@ -24,13 +17,13 @@ char	get_screen_char(size_t density)
 	return (set[idx]);
 }
 
-bool	is_in_screen(ssize_t y, ssize_t z)
+bool	is_in_screen(double y, double z)
 {
 	return (-SCREEN_WIDTH / 2 < y && y < SCREEN_WIDTH / 2 && \
 			-SCREEN_HEIGHT / 2 < z && z < SCREEN_HEIGHT / 2);
 }
 
-void	fill_screen(t_screen screen, ssize_t y, ssize_t z)
+void	fill_screen(t_screen screen, double y, double z)
 {
 	const ssize_t	offset_origin_h = SCREEN_HEIGHT / 2;
 	const ssize_t	offset_origin_w = SCREEN_WIDTH / 2;
