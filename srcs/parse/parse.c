@@ -39,7 +39,7 @@ static void	parse_lines_to_vectors(t_clist *lines, t_points *points)
 	while (!ft_clst_isend(lines))
 	{
 		line = lines->data;
-		point = &points->points[i];
+		point = &points->vects[i];
 		parse_coordinate(line, point);
 		lines = lines->next;
 		i++;
@@ -49,7 +49,7 @@ static void	parse_lines_to_vectors(t_clist *lines, t_points *points)
 static void	init_points(t_points *points, t_clist *lines)
 {
 	points->size = ft_clst_size(lines);
-	points->points = or_exit(malloc(sizeof(t_vect) * points->size));
+	points->vects = or_exit(malloc(sizeof(t_vect) * points->size));
 }
 
 t_points	parse_lines_to_points(t_clist *lines)

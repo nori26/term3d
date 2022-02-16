@@ -39,7 +39,7 @@ static void	scale_points(t_points *points, double range)
 	i = 0;
 	while (i < points->size)
 	{
-		vect = &points->points[i];
+		vect = &points->vects[i];
 		vect->x *= width_scale;
 		vect->y *= width_scale;
 		vect->z *= height_scale;

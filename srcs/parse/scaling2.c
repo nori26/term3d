@@ -9,11 +9,11 @@ void	get_max_or_min(t_points *points, t_vect *dest, t_cmp cmp)
 	size_t	i;
 	t_vect	*vect;
 
-	*dest = points->points[0];
+	*dest = points->vects[0];
 	i = 0;
 	while (i < points->size)
 	{
-		vect = &points->points[i];
+		vect = &points->vects[i];
 		dest->x = cmp(dest->x, vect->x);
 		dest->y = cmp(dest->y, vect->y);
 		dest->z = cmp(dest->z, vect->z);

@@ -12,7 +12,7 @@ t_vect	get_offest_from_origin(t_points *points)
 	i = 0;
 	while (i < points->size)
 	{
-		vect = &points->points[i];
+		vect = &points->vects[i];
 		offset = vect_add(offset, *vect);
 		i++;
 	}
@@ -28,7 +28,7 @@ void	shift_points_to_center(t_points *points, t_vect *offset)
 	i = 0;
 	while (i < points->size)
 	{
-		vect = &points->points[i];
+		vect = &points->vects[i];
 		*vect = vect_sub(*vect, *offset);
 		i++;
 	}

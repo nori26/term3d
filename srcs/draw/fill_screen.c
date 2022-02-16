@@ -48,7 +48,7 @@ void	fill_screen_with_points(t_screen screen, t_points *points)
 	i = 0;
 	while (i < points->size)
 	{
-		vect = &points->points[i];
+		vect = &points->vects[i];
 		if (is_in_screen(vect->y, vect->z))
 			fill_screen(screen, vect->y, vect->z);
 		i++;

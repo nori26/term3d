@@ -10,7 +10,7 @@
 typedef struct s_points
 {
 	size_t	size;
-	t_vect	*points;
+	t_vect	*vects;
 }	t_points;
 
 #endif

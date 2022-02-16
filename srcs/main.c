@@ -19,7 +19,7 @@ void	validate_terminal_size(void)
 	}
 	if (ws.ws_col < SCREEN_WIDTH)
 	{
-		fprintf(stderr, "terminal width too short");
+		fprintf(stderr, "terminal width not enough");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -39,5 +39,5 @@ int	main(int argc, char **argv)
 	points = parse_lines_to_points(lines);
 	ft_clst_clear(&lines, free);
 	draw_object(&points);
-	free(points.points);
+	free(points.vects);
 }

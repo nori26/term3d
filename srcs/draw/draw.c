@@ -55,7 +55,7 @@ void	rotate_z(t_points *points)
 	i = 0;
 	while (i < points->size)
 	{
-		vect = &points->points[i];
+		vect = &points->vects[i];
 		x = vect->x;
 		y = vect->y;
 		vect->x = x * cos(PHI) - y * sin(PHI);
