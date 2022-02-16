@@ -27,12 +27,13 @@ double	vect_len(t_vect v)
 	return (sqrt(dot(v, v)));
 }
 
-int	check_parallel(t_vect a, t_vect b, t_vect c)
+void	rotate_matrix_z(double *x, double *y, double angle)
 {
-	t_vect	v1;
-	t_vect	v2;
+	double	x_tmp;
+	double	y_tmp;
 
-	v1 = vect_sub(a, b);
-	v2 = vect_sub(a, c);
-	return (!vect_len(cross(v1, v2)));
+	x_tmp = *x;
+	y_tmp = *y;
+	*x = x_tmp * cos(angle) - y_tmp * sin(angle);
+	*y = x_tmp * sin(angle) + y_tmp * cos(angle);
 }

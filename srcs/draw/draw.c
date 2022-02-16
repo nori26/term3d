@@ -6,6 +6,7 @@
 #include "vector.h"
 #include "term3d.h"
 
+
 #define TERM_CLEAR "\033c"
 #define PHI			0.02
 
@@ -59,18 +60,13 @@ static void	init_screen(t_screen screen)
 static void	rotate_z(t_points *points)
 {
 	size_t	i;
-	double	x;
-	double	y;
 	t_vect	*vect;
 
 	i = 0;
 	while (i < points->size)
 	{
 		vect = &points->vects[i];
-		x = vect->x;
-		y = vect->y;
-		vect->x = x * cos(PHI) - y * sin(PHI);
-		vect->y = x * sin(PHI) + y * cos(PHI);
+		rotate_matrix_z(&vect->x, &vect->y, PHI);
 		i++;
 	}
 }
