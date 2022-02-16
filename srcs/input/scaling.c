@@ -4,7 +4,7 @@
 #include "term3d.h"
 #include "vector.h"
 
-double ft_max_dbl(double a, double b)
+double	ft_max_dbl(double a, double b)
 {
 	if (a > b)
 		return (a);
@@ -12,7 +12,7 @@ double ft_max_dbl(double a, double b)
 		return (b);
 }
 
-double ft_min_dbl(double a, double b)
+double	ft_min_dbl(double a, double b)
 {
 	if (a > b)
 		return (b);
@@ -68,7 +68,6 @@ void	scale_points(t_points *points, double range)
 	size_t			i;
 	t_vect			*vect;
 
-	printf("scale %f %f\n",height_scale, width_scale);
 	i = 0;
 	while (i < points->size)
 	{
@@ -76,7 +75,6 @@ void	scale_points(t_points *points, double range)
 		vect->x *= width_scale;
 		vect->y *= width_scale;
 		vect->z *= height_scale;
-		// vect->x -= CAM_TO_SCREEN_DIST;
 		i++;
 	}
 }

@@ -39,8 +39,5 @@ void	centering(t_points *points)
 	t_vect	offset;
 
 	offset = get_offest_from_origin(points);
-	// return ;
 	move_points_to_center(points, &offset);
-	// offset = get_offest_from_origin(points);
-	// vect_print(&offset);
 }

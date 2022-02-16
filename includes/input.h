@@ -3,15 +3,15 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include "term3d.h"
-typedef struct s_vect t_vect;
-typedef struct s_clist t_clist;
-typedef double (*t_cmp)(double, double);
+typedef struct s_vect	t_vect;
+typedef struct s_clist	t_clist;
+typedef double			(*t_cmp)(double, double);
 
 bool		is_valid_file_extension(char *filename);
-double		get_max_range(t_vect *max, t_vect *min);
-double		get_next_coordinate(char **remained);
 double		ft_max_dbl(double a, double b);
 double		ft_min_dbl(double a, double b);
+double		get_max_range(t_vect *max, t_vect *min);
+double		get_next_coordinate(char **remained);
 t_clist		*input_lines(FILE *infile);
 t_clist		*input_raw_lines(FILE *infile);
 t_points	input(char *filename);

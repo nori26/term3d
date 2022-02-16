@@ -57,7 +57,7 @@ void	init_screen(size_t screen[][SCREEN_WIDTH])
 
 bool	is_in_screen(ssize_t y, ssize_t z)
 {
-	return (-SCREEN_WIDTH / 2 < y && y < SCREEN_WIDTH / 2  && \
+	return (-SCREEN_WIDTH / 2 < y && y < SCREEN_WIDTH / 2 && \
 			-SCREEN_HEIGHT / 2 < z && z < SCREEN_HEIGHT / 2);
 }
 
@@ -86,11 +86,11 @@ void	fill_screen_with_points(size_t screen[][SCREEN_WIDTH], t_points *points)
 	}
 }
 
-void	validate_terminal_size()
+void	validate_terminal_size(void)
 {
-	struct winsize ws;
+	struct winsize	ws;
 
-    if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
+	if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
 	{
 		perror("ioctl");
 		exit(EXIT_FAILURE);
@@ -102,10 +102,10 @@ void	validate_terminal_size()
 	}
 }
 
-void rotate_z(t_points *points)
+void	rotate_z(t_points *points)
 {
-	size_t i;
-	t_vect *vect;
+	size_t	i;
+	t_vect	*vect;
 
 	i = 0;
 	while (i < points->size)

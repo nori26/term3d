@@ -186,6 +186,7 @@ void	validate_filename(char *filename)
 		exit(EXIT_FAILURE);
 	}
 }
+
 void	print_points(t_points points)
 {
 	size_t	i;
@@ -214,11 +215,7 @@ t_points	input(char *filename)
 	points = parse_lines_to_vector(lines);
 	centering(&points);
 	scaling(&points);
-	// print_points(points);
-	// 	*vect = vect_mult(*vect, SCALE_TO_INT);
-	// vect->x -= CAM_TO_SCREEN_DIST;
 	ft_clst_clear(&lines, free);
 	fclose(infile);
-	// exit(0);
 	return (points);
 }

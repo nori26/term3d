@@ -6,7 +6,7 @@
 #    By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 16:05:14 by nosuzuki          #+#    #+#              #
-#    Updated: 2022/02/03 15:54:20 by nosuzuki         ###   ########.fr        #
+#    Updated: 2022/02/16 06:35:14 by nosuzuki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SDIR  	:= ./srcs/string/str
 UTILDIR := ./srcs/utils
 HASHDIR	:= ./srcs/hash
 OPTDIR	:= ./srcs/getopt
-PATHDIR	:= ./srcs/path
 OBJDIR	:= ./obj
 INCLUDE	:= ./includes
 VPATH 	:= $(shell find $(SRCDIR) -type d | awk '{print $$0":"}')
@@ -158,13 +157,7 @@ OPTSRC	=\
 	./srcs/getopt/getopt.c\
 	./srcs/getopt/getopt_uitls.c\
 
-PATHSRC	=\
-	./srcs/path/ft_is_relative_path.c\
-	./srcs/path/ft_join_path.c\
-	./srcs/path/ft_normalize_path.c\
-
-
-SRCS	:= $(CTYPSRC)$(FREESRC)$(GNLSRC)$(IOSRC)$(LISTSRC)$(SORTSRC)$(STRSRC)$(UTILSRC)$(HASHSRC)$(OPTSRC)$(PATHSRC)
+SRCS	:= $(CTYPSRC)$(FREESRC)$(GNLSRC)$(IOSRC)$(LISTSRC)$(SORTSRC)$(STRSRC)$(UTILSRC)$(HASHSRC)$(OPTSRC)
 OBJS	:= $(shell basename -a $(SRCS:.c=.o) | awk -v o=$(OBJDIR) '{print o"/"$$0}')
 DEPENDS	:= $(OBJS:.o=.d)
 
@@ -202,7 +195,6 @@ add		:
 	bash header.sh "$(HASHDIR)" $(INCLUDE)/hash.h
 	bash header.sh "$(OPTDIR)" $(INCLUDE)/ft_getopt.h
 	bash header.sh "$(CTYPDIR)" $(INCLUDE)/ft_ctype.h
-	bash header.sh "$(PATHDIR)" $(INCLUDE)/ft_path.h
 	bash header.sh "$(GNLDIR)" $(INCLUDE)/get_next_line.h
 	bash make.sh $(CTYPDIR) CTYPSRC
 	bash make.sh $(STRDIR) STRSRC
@@ -214,6 +206,5 @@ add		:
 	bash make.sh $(HASHDIR) HASHSRC
 	bash make.sh $(OPTDIR) OPTSRC
 	bash make.sh $(GNLDIR) GNLSRC
-	bash make.sh $(PATHDIR) PATHSRC
 
 .PHONY	: all clean fclean re bonus add

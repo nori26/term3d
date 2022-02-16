@@ -6,7 +6,7 @@
 # define OBJ_WIDTH			60
 # define PHI				0.02
 # include <stddef.h>
-typedef struct s_vect t_vect;
+typedef struct s_vect	t_vect;
 typedef struct
 {
 	size_t	size;
