@@ -80,7 +80,6 @@ void	fill_screen_with_points(size_t screen[][SCREEN_WIDTH], t_points *points)
 	while (i < points->size)
 	{
 		vect = &points->points[i];
-		// convert_vect_to_screen_coordinate(vect, &y, &z);
 		if (is_in_screen(vect->y, vect->z))
 			fill_screen(screen, vect->y, vect->z);
 		i++;
