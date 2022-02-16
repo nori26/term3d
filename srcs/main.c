@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <math.h>
 #include "vector.h"
 #include "term3d.h"
 #include "input.h"
@@ -12,6 +13,7 @@ void	print_screen(char screen[][SCREEN_WIDTH])
 	size_t	x;
 	size_t	y;
 
+	printf("\033[2j");
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{
@@ -99,13 +101,33 @@ void	validate_terminal_size()
 	}
 }
 
+void rotate_z(t_points *points)
+{
+	size_t i;
+	t_vect *vect;
+
+	i = 0;
+	while (i < points->size)
+	{
+		vect = &points->points[i];
+		vect->x = vect->x * cos(PHI) - vect->y * sin(PHI);
+		vect->y = vect->x * sin(PHI) + vect->y * cos(PHI);
+		i++;
+	}
+}
+
 void	output(t_points *points)
 {
 	char	screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
-	init_screen(screen);
-	fill_screen_with_points(screen, points);
-	print_screen(screen);
+	while (1)
+	{
+		init_screen(screen);
+		rotate_z(points);
+		fill_screen_with_points(screen, points);
+		print_screen(screen);
+		usleep(10000);
+	}
 }
 
 int	main(int argc, char **argv)

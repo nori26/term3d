@@ -7,6 +7,7 @@
 # define SCREEN_SIZE		60
 # define CAM_TO_SCREEN_DIST	60
 # define SCALE_TO_INT		10
+# define PHI				0.02
 # include <stddef.h>
 typedef struct s_vect t_vect;
 typedef struct
