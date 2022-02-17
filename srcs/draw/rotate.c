@@ -18,7 +18,7 @@ void	reset_rotation_angle(void)
 	rotation_angle_storage(PHI, true);
 }
 
-double	get_rotation_angle()
+double	get_rotation_angle(void)
 {
 	return (rotation_angle_storage(0, false));
 }
@@ -43,7 +43,7 @@ void	set_rotation_angle(char option)
 		else
 			angle = prev;
 	}
-	else if (option == 'a' && angle > 0) 
+	else if (option == 'a' && angle > 0)
 		angle = -angle;
 	else if (option == 'd' && angle < 0)
 		angle = -angle;

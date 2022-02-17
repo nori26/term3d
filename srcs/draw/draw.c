@@ -27,7 +27,7 @@ void	reset_coordinate(t_points *points, t_points *base)
 	reset_rotation_angle();
 }
 
-void	alter_coordinate(t_points *points, t_points *base, t_option *option)
+static void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 {
 	if (option->reset)
 		reset_coordinate(points, base);

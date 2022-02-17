@@ -4,7 +4,7 @@
 #include "term3d.h"
 #include "utils.h"
 
-void	zoom_by_scale(t_points *points, double scale)
+static void	zoom_by_scale(t_points *points, double scale)
 {
 	size_t	i;
 	t_vect	*vect;
@@ -20,12 +20,12 @@ void	zoom_by_scale(t_points *points, double scale)
 	}
 }
 
-void	zoom_in(t_points *points)
+static void	zoom_in(t_points *points)
 {
 	zoom_by_scale(points, 1.1);
 }
 
-void	zoom_out(t_points *points)
+static void	zoom_out(t_points *points)
 {
 	zoom_by_scale(points, 0.9);
 }

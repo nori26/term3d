@@ -25,12 +25,12 @@ void	validate_terminal_size(void)
 	}
 }
 
-void	set_non_blocking_stdin()
+void	set_non_blocking_stdin(void)
 {
 	struct termios	settings;
 
 	tcgetattr(STDIN_FILENO, &settings);
-	settings.c_lflag &= ~(ECHO|ICANON);
+	settings.c_lflag &= ~(ECHO | ICANON);
 	tcsetattr(STDIN_FILENO, TCSANOW, &settings);
 	fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 }

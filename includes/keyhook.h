@@ -1,6 +1,6 @@
 #ifndef KEYHOOK_H
 # define KEYHOOK_H
-#include <stdbool.h>
+# include <stdbool.h>
 typedef struct s_option
 {
 	bool	reset;

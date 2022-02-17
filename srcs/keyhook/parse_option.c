@@ -23,7 +23,6 @@ static void	set_reset_flag(char key_input, t_option *option)
 void	parse_option(char key_input, t_option *option)
 {
 	*option = (t_option){};
-
 	set_reset_flag(key_input, option);
 	set_rotate_speed(key_input, option);
 	set_zoom_rate(key_input, option);
