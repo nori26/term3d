@@ -12,7 +12,6 @@
 !*.hpp
 !*.yml
 !*_cpp
-!*.json
 !*.3d
 test.c
 input_test.c
