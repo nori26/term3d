@@ -138,7 +138,7 @@ void	alter_coordinate(t_points *points, const t_points *base)
 		reset_coordinate(points, base);
 	else
 	{
-		//zoom_object(option.zoom_rate, points);
+		zoom_object(option.zoom_rate, points);
 		// shift_object();
 		set_rotation_angle(option.rotate_speed);
 	}
