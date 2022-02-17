@@ -23,6 +23,7 @@ void	validate_terminal_size(void)
 		exit(EXIT_FAILURE);
 	}
 }
+
 int	main(int argc, char **argv)
 {
 	t_points	points;
