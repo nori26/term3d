@@ -18,6 +18,9 @@ void			reset_coordinate(t_points *points, t_points *base);
 void			reset_rotation_angle(void);
 void			rotate_z(t_points *points);
 void			set_rotation_angle(char option);
+void			zoom_by_scale(t_points *points, double scale);
+void			zoom_in(t_points *points);
 void			zoom_object(char option, t_points *points);
+void			zoom_out(t_points *points);
 
 #endif

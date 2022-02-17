@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/time.h>
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
@@ -34,9 +33,8 @@ void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 		reset_coordinate(points, base);
 	else
 	{
-		zoom_object(option.zoom_rate, points);
-		// shift_object();
-		set_rotation_angle(option.rotate_speed);
+		zoom_object(option->zoom_rate, points);
+		set_rotation_angle(option->rotate_speed);
 	}
 	rotate_z(points);
 }
