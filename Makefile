@@ -107,8 +107,8 @@ clean	: rm_reloc
 fclean	: clean rm_exec
 #	@make b_fclean WITH_BONUS=1
 
-# bonus	:
-# 	@make WITH_BONUS=1
+bonus	:
+	@make WITH_BONUS=1
 
 b_clean	: rm_reloc
 
