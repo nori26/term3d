@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-#include "ft_list.h"
 #include "term3d.h"
 #include "adjust.h"
 #include "input.h"
