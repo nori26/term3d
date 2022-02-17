@@ -4,18 +4,15 @@
 #include "term3d.h"
 #include "utils.h"
 
-void	zoom_in(t_points *points)
+void	zoom_by_scale(t_points *points, double scale)
 {
 	size_t	i;
 	t_vect	*vect;
-	double	scale;
 
-	scale = 1.1;
 	i = 0;
 	while (i < points->size)
 	{
 		vect = &points->vects[i];
-		argumented_coodinate(&vect->x, &vect->y, &vect->z, scale);
 		vect->x = vect->x * scale;
 		vect->y = vect->y * scale;
 		vect->z = vect->z * scale;
@@ -23,22 +20,14 @@ void	zoom_in(t_points *points)
 	}
 }
 
+void	zoom_in(t_points *points)
+{
+	zoom_by_scale(points, 1.1);
+}
+
 void	zoom_out(t_points *points)
 {
-	size_t	i;
-	t_vect	*vect;
-	double	scale;
-
-	scale = 0.9;
-	i = 0;
-	while (i < points->size)
-	{
-		vect = &points->vects[i];
-		vect->x = vect->x * scale;
-		vect->y = vect->y * scale;
-		vect->z = vect->z * scale;
-		i++;
-	}
+	zoom_by_scale(points, 0.9);
 }
 
 void	zoom_object(char option, t_points *points)
