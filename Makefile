@@ -22,6 +22,7 @@ DIR3		:= $(SRCDIR)/wrapper
 DIR4		:= $(SRCDIR)/adjust
 DIR5		:= $(SRCDIR)/utils
 DIR6		:= $(SRCDIR)/draw
+DIR7		:= $(SRCDIR)/option
 
 MAIN		:= srcs/main.c\
 
@@ -55,7 +56,10 @@ SRC6	=\
 	srcs/draw/draw.c\
 	srcs/draw/fill_screen.c\
 
-SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)$(SRC4)$(SRC5)$(SRC6)
+SRC7	=\
+	srcs/option/option.c\
+
+SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)$(SRC4)$(SRC5)$(SRC6)$(SRC7)
 OBJS		:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRCS:.c=.o))
 DEPENDS		:= $(OBJS:.o=.d)
 
@@ -117,12 +121,14 @@ add		:
 	bash header.sh "$(DIR4)" $(INCLUDE)/adjust.h
 	bash header.sh "$(DIR5)" $(INCLUDE)/utils.h
 	bash header.sh "$(DIR6)" $(INCLUDE)/draw.h
+	bash header.sh "$(DIR7)" $(INCLUDE)/option.h
 	bash make.sh $(DIR1) SRC1
 	bash make.sh $(DIR2) SRC2
 	bash make.sh $(DIR3) SRC3
 	bash make.sh $(DIR4) SRC4
 	bash make.sh $(DIR5) SRC5
 	bash make.sh $(DIR6) SRC6
+	bash make.sh $(DIR7) SRC7
 
 re		: fclean all
 
