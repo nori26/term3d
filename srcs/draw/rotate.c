@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42    </var/mail/user42>               +#+  +:+       +#+        */
+/*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 11:14:57 by user42           ###   ########.fr       */
+/*   Updated: 2022/02/17 12:06:49 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
-
-#define PHI			0.02
+#include "phi.h"
 
 static double	rotation_angle_storage(double set_angle, bool is_set)
 {
