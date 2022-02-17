@@ -1,6 +1,6 @@
 #include <math.h>
 #include "ft_utils.h"
-#include "parse.h"
+#include "adjust.h"
 #include "term3d.h"
 #include "vector.h"
 

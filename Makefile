@@ -19,7 +19,7 @@ INCLUDES	:= $(INCLUDE) $(LIBINCLUDE)
 DIR1		:= $(SRCDIR)/vector
 DIR2		:= $(SRCDIR)/input
 DIR3		:= $(SRCDIR)/wrapper
-DIR4		:= $(SRCDIR)/parse
+DIR4		:= $(SRCDIR)/adjust
 DIR5		:= $(SRCDIR)/utils
 DIR6		:= $(SRCDIR)/draw
 
@@ -31,7 +31,9 @@ SRC1	=\
 	srcs/vector/vector_utils2.c\
 
 SRC2	=\
+	srcs/input/file_to_list.c\
 	srcs/input/input.c\
+	srcs/input/parse.c\
 	srcs/input/validate_filename.c\
 	srcs/input/validate_lines.c\
 
@@ -41,10 +43,10 @@ SRC3	=\
 	srcs/wrapper/ft_strtod.c\
 
 SRC4	=\
-	srcs/parse/centering.c\
-	srcs/parse/parse.c\
-	srcs/parse/scaling.c\
-	srcs/parse/scaling2.c\
+	srcs/adjust/adjust.c\
+	srcs/adjust/centering.c\
+	srcs/adjust/scaling.c\
+	srcs/adjust/scaling2.c\
 
 SRC5	=\
 	srcs/utils/utils.c\
@@ -112,7 +114,7 @@ add		:
 	bash header.sh "$(DIR1)" $(INCLUDE)/vector.h
 	bash header.sh "$(DIR2)" $(INCLUDE)/input.h
 	bash header.sh "$(DIR3)" $(INCLUDE)/wrapper.h
-	bash header.sh "$(DIR4)" $(INCLUDE)/parse.h
+	bash header.sh "$(DIR4)" $(INCLUDE)/adjust.h
 	bash header.sh "$(DIR5)" $(INCLUDE)/utils.h
 	bash header.sh "$(DIR6)" $(INCLUDE)/draw.h
 	bash make.sh $(DIR1) SRC1
