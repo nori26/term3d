@@ -15,7 +15,9 @@ t_vect	vect_init(double x, double y, double z);
 t_vect	vect_mult(t_vect v, double d);
 t_vect	vect_sub(t_vect v1, t_vect v2);
 t_vect	vect_unit(t_vect v);
+void	rotate_matrix_y(double *x, double *z, double angle);
 void	rotate_matrix_z(double *x, double *y, double angle);
 void	vect_print(t_vect *vect);
+void	augumented_coodinate(double *x, double *y, double *z, double *scale);
 
 #endif

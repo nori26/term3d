@@ -57,6 +57,7 @@ SRC6	=\
 	srcs/draw/fill_screen.c\
 	srcs/draw/print.c\
 	srcs/draw/rotate.c\
+	srcs/draw/zoom.c\
 
 SRC7	=\
 	srcs/keyhook/hook_keyinput.c\
