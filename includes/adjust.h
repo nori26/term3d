@@ -1,5 +1,5 @@
 #ifndef ADJUST_H
-#define ADJUST_H
+# define ADJUST_H
 typedef struct s_points	t_points;
 typedef struct s_vect	t_vect;
 typedef double			(*t_cmp)(double, double);
