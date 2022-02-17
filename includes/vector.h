@@ -18,6 +18,6 @@ t_vect	vect_unit(t_vect v);
 void	rotate_matrix_y(double *x, double *z, double angle);
 void	rotate_matrix_z(double *x, double *y, double angle);
 void	vect_print(t_vect *vect);
-void	augumented_matrix(double *x, double *y, double *z, double *scale);
+void	augumented_coodinate(double *x, double *y, double *z, double *scale);
 
 #endif

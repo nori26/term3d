@@ -1,15 +1,8 @@
-#include <stdio.h>
 #include <string.h>
-#include <unistd.h>
-#include <sys/time.h>
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
-#include "option.h"
-
 #include "utils.h"
-#include <stdlib.h>
-#include <math.h>
 
 void	zoom_in(t_points *points)
 {
@@ -22,6 +15,7 @@ void	zoom_in(t_points *points)
 	while (i < points->size)
 	{
 		vect = &points->vects[i];
+		argumented_coodinate(&vect->x, &vect->y, &vect->z, scale);
 		vect->x = vect->x * scale;
 		vect->y = vect->y * scale;
 		vect->z = vect->z * scale;
