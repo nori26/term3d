@@ -5,9 +5,7 @@
 #include "vector.h"
 #include "term3d.h"
 #include "keyhook.h"
-
 #include "utils.h"
-#include <stdlib.h>
 
 static void	init_screen(t_screen screen)
 {
