@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-#include "ft_list.h"
 #include "term3d.h"
-#include "parse.h"
+#include "adjust.h"
 #include "input.h"
 #include "draw.h"
 
@@ -27,7 +26,6 @@ void	validate_terminal_size(void)
 int	main(int argc, char **argv)
 {
 	t_points	points;
-	t_clist		*lines;
 
 	if (argc != 2)
 	{
@@ -35,9 +33,8 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	validate_terminal_size();
-	lines = input(argv[1]);
-	points = parse_lines_to_points(lines);
-	ft_clst_clear(&lines, free);
+	points = input(argv[1]);
+	adjust_object_to_screen(&points);
 	draw_object(&points);
 	free(points.vects);
 }

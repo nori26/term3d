@@ -5,7 +5,6 @@
 #include "term3d.h"
 #include "vector.h"
 #include "wrapper.h"
-#include "parse.h"
 
 static double	get_next_coordinate(char **remained)
 {
@@ -60,7 +59,5 @@ t_points	parse_lines_to_points(t_clist *lines)
 	if (!points.size)
 		exit(EXIT_SUCCESS);
 	parse_lines_to_vectors(lines, &points);
-	shift_to_center(&points);
-	scale_object_to_adjust_screen(&points);
 	return (points);
 }
