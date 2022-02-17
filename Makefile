@@ -22,7 +22,6 @@ DIR3		:= $(SRCDIR)/wrapper
 DIR4		:= $(SRCDIR)/parse
 DIR5		:= $(SRCDIR)/utils
 DIR6		:= $(SRCDIR)/draw
-ALLDIRS		:= $(shell find srcs -mindepth 1 -type d)
 
 MAIN		:= srcs/main.c\
 
@@ -56,8 +55,6 @@ SRC6	=\
 
 SRCS		:= $(MAIN)$(SRC1)$(SRC2)$(SRC3)$(SRC4)$(SRC5)$(SRC6)
 OBJS		:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRCS:.c=.o))
-OBJSUBDIRS	:= $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(ALLDIRS))
-VPATH 		:= $(shell find $(SRCDIR) -type d | tr '\n' ':')
 DEPENDS		:= $(OBJS:.o=.d)
 
 PURPLE		:= \033[1;35m
@@ -74,8 +71,8 @@ all		: _libft $(NAME)
 
 -include $(DEPENDS)
 
-$(OBJDIR)/%.o : %.c
-	@mkdir -p $(OBJSUBDIRS)
+$(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@mkdir -p $(OBJDIR)/$(*D)
 	@$(CC) $(CFLAGS) $(IOPTIONS) -c $< -o $@
 	@echo -e "	""$(GREEN)$@$(RESET)"
 
