@@ -116,9 +116,9 @@ static void	rotate_z(t_points *points)
 	}
 }
 
-void	reset_rotation_angle()
+void	reset_rotation_angle(double set_angle, bool is_set)
 {
-	rotation_angle_storage(PHI, true);
+	rotation_angle_storage(set_angle, is_set);
 }
 
 void	reset_coordinate(t_points *points, const t_points *base)
@@ -138,7 +138,7 @@ void	alter_coordinate(t_points *points, const t_points *base)
 		reset_coordinate(points, base);
 	else
 	{
-		// zoom_object();
+		zoom_object(option.zoom_rate, points);
 		// shift_object();
 		set_rotation_angle(option.rotate_speed);
 	}

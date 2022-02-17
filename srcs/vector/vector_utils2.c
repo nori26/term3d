@@ -37,3 +37,10 @@ void	rotate_matrix_z(double *x, double *y, double angle)
 	*x = x_tmp * cos(angle) - y_tmp * sin(angle);
 	*y = x_tmp * sin(angle) + y_tmp * cos(angle);
 }
+
+void	augumented_coodinate(double *x, double *y, double *z, double *scale)
+{
+	*x = x * scale;
+	*y = y * scale;
+	*z = z * scale;
+}
