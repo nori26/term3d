@@ -1,6 +1,7 @@
 #ifndef DRAW_H
 # define DRAW_H
 # include <stdbool.h>
+# include <stddef.h>
 # define SCREEN_HEIGHT	50
 # define SCREEN_WIDTH	65
 typedef struct s_points	t_points;
@@ -8,6 +9,7 @@ typedef struct s_option	t_option;
 typedef size_t			t_screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 _Noreturn void	draw(t_points *points);
+double			get_angle_w_s(double angle, char option);
 double			get_rotation_angle(void);
 void			fill_screen_with_points(t_screen screen, t_points *points);
 void			init_screen(t_screen screen);

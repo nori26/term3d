@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include "draw.h"
 #include "vector.h"
 #include "term3d.h"
 
@@ -29,10 +30,10 @@ void	set_rotation_angle(char option)
 	double			angle;
 
 	angle = get_rotation_angle();
-	if (option == 's' && angle > 0)
-		angle -= PHI;
-	else if (option == 'w' && angle < 6.28)
-		angle += PHI;
+	if (option == 'w' || option == 's')
+		angle = get_angle_w_s(angle, option);
+	else if ((option == 'a' && angle > 0) || (option == 'd' && angle < 0))
+		angle *= -1;
 	else if (option == ' ')
 	{
 		if (angle)
@@ -43,10 +44,6 @@ void	set_rotation_angle(char option)
 		else
 			angle = prev;
 	}
-	else if (option == 'a' && angle > 0)
-		angle = -angle;
-	else if (option == 'd' && angle < 0)
-		angle = -angle;
 	rotation_angle_storage(angle, true);
 }
 
