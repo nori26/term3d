@@ -25,6 +25,16 @@ void	reset_coordinate(t_points *points, t_points *base)
 	reset_rotation_angle();
 }
 
+static t_points	create_points_copy(t_points *points)
+{
+	t_points	cpy;
+
+	cpy.size = points->size;
+	cpy.vects = or_exit(malloc(sizeof(t_vect) * cpy.size));
+	memcpy(cpy.vects, points->vects, sizeof(t_vect) * cpy.size);
+	return (cpy);
+}
+
 static void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 {
 	if (option->reset)
@@ -35,16 +45,6 @@ static void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 		set_rotation_angle(option->rotate_speed);
 	}
 	rotate_z(points);
-}
-
-t_points	create_points_copy(t_points *points)
-{
-	t_points	cpy;
-
-	cpy.size = points->size;
-	cpy.vects = or_exit(malloc(sizeof(t_vect) * cpy.size));
-	memcpy(cpy.vects, points->vects, sizeof(t_vect) * cpy.size);
-	return (cpy);
 }
 
 void	draw_object(t_points *points)
