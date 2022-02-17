@@ -5,7 +5,7 @@
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
-#include "option.h"
+#include "keyhook.h"
 
 #include "utils.h"
 #include <stdlib.h>
@@ -121,26 +121,20 @@ void	reset_rotation_angle()
 	rotation_angle_storage(PHI, true);
 }
 
-void	reset_coordinate(t_points *points, const t_points *base)
+void	reset_coordinate(t_points *points, t_points *base)
 {
 	memcpy(points->vects, base->vects, sizeof(t_vect) * base->size);
 	reset_rotation_angle(PHI, true);
 }
 
-void	alter_coordinate(t_points *points, const t_points *base)
+void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 {
-	t_option		option;
-	char			key_input;
-
-	key_input = getchar();
-	option_handler(key_input, &option);
-	if (option.reset)
+	if (option->reset)
 		reset_coordinate(points, base);
 	else
 	{
 		// zoom_object();
-		// shift_object();
-		set_rotation_angle(option.rotate_speed);
+		set_rotation_angle(option->rotate_speed);
 	}
 	rotate_z(points);
 }
@@ -155,17 +149,26 @@ t_points	create_points_copy(t_points *points)
 	return (cpy);
 }
 
-_Noreturn void	draw_object(t_points *points)
+void	draw_object(t_points *points)
 {
-	const t_points	base = create_points_copy(points);
-	t_screen		screen;
+	t_screen	screen;
 
+	init_screen(screen);
+	fill_screen_with_points(screen, points);
+	print_screen(screen);
+}
+
+_Noreturn void	draw(t_points *points)
+{
+	t_points	base;
+	t_option	option;
+
+	base = create_points_copy(points);
 	while (true)
 	{
-		alter_coordinate(points, &base);
-		init_screen(screen);
-		fill_screen_with_points(screen, points);
-		print_screen(screen);
+		hook_key_input(&option);
+		alter_coordinate(points, &base, &option);
+		draw_object(points);
 		usleep(10000);
 	}
 }
