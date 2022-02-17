@@ -48,6 +48,5 @@ int	main(int argc, char **argv)
 	set_non_blocking_stdin();
 	points = input(argv[1]);
 	adjust_object_to_screen(&points);
-	draw_object(&points);
-	free(points.vects);
+	draw(&points);
 }
