@@ -55,6 +55,7 @@ SRC5	=\
 SRC6	=\
 	srcs/draw/draw.c\
 	srcs/draw/fill_screen.c\
+	srcs/draw/init_screen.c\
 	srcs/draw/print.c\
 	srcs/draw/rotate.c\
 	srcs/draw/zoom.c\

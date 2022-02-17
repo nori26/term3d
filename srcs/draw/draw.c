@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "draw.h"
 #include "vector.h"
@@ -7,22 +8,9 @@
 #include "keyhook.h"
 #include "utils.h"
 
-static void	init_screen(t_screen screen)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < SCREEN_HEIGHT)
-	{
-		memset(screen[i], 0, SCREEN_WIDTH * sizeof(size_t));
-		i++;
-	}
-}
-
-void	reset_coordinate(t_points *points, t_points *base)
+static void	reset_coordinate(t_points *points, t_points *base)
 {
 	memcpy(points->vects, base->vects, sizeof(t_vect) * base->size);
-	reset_rotation_angle();
 }
 
 static t_points	create_points_copy(t_points *points)
@@ -38,7 +26,10 @@ static t_points	create_points_copy(t_points *points)
 static void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 {
 	if (option->reset)
+	{
 		reset_coordinate(points, base);
+		reset_rotation_angle();
+	}
 	else
 	{
 		zoom_object(option->zoom_rate, points);
@@ -47,7 +38,7 @@ static void	alter_coordinate(t_points *points, t_points *base, t_option *option)
 	rotate_z(points);
 }
 
-void	draw_object(t_points *points)
+static void	draw_object(t_points *points)
 {
 	t_screen	screen;
 
