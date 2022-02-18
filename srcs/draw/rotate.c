@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 12:06:49 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/18 13:59:26 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include "term3d.h"
 #include "phi.h"
 
-static double	rotation_angle_storage(double set_angle, bool is_set)
+static double	rotation_angle_storage(double new_angle, bool is_set)
 {
 	static double	angle = PHI;
 
 	if (is_set)
-		angle = set_angle;
+		angle = new_angle;
 	return (angle);
 }
 

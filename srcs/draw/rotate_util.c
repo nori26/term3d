@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:19 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 12:06:37 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/18 13:54:58 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	get_angle_w_s(double angle, char option)
 	abs = fabs(angle);
 	if (option == 's' && abs > 0)
 		abs -= PHI;
-	else if (option == 'w' && abs < 6.28)
+	else if (option == 'w' && abs < M_PI * 2)
 		abs += PHI;
 	if (angle > 0)
 		angle = abs;
