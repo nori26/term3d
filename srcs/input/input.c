@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42    </var/mail/user42>               +#+  +:+       +#+        */
+/*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 04:29:07 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 04:29:07 by user42           ###   ########.fr       */
+/*   Updated: 2022/02/18 13:42:49 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "term3d.h"
 #include "input.h"
 
-t_points	input(char *filename)
+t_points	read_points_from_file(char *filename)
 {
 	t_clist		*lines;
 	t_points	points;

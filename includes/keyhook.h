@@ -9,7 +9,6 @@
 /*   Updated: 2022/02/17 11:18:04 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef KEYHOOK_H
 # define KEYHOOK_H
 # include <stdbool.h>

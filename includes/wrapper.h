@@ -9,7 +9,6 @@
 /*   Updated: 2022/02/17 11:18:20 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef WRAPPER_H
 # define WRAPPER_H
 # include <stdio.h>

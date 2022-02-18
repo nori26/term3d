@@ -9,7 +9,6 @@
 /*   Updated: 2022/02/17 11:18:01 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef INPUT_H
 # define INPUT_H
 # include <stdio.h>
@@ -19,8 +18,8 @@ typedef struct s_clist	t_clist;
 typedef struct s_vect	t_vect;
 
 t_clist		*create_line_lst_from_file(char *filename);
-t_points	input(char *filename);
 t_points	parse_lines_to_points(t_clist *lines);
+t_points	read_points_from_file(char *filename);
 void		validate_filename(char *filename);
 void		validate_lines(t_clist *lines);
 

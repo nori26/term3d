@@ -9,7 +9,6 @@
 /*   Updated: 2022/02/17 11:18:06 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef VECTOR_H
 # define VECTOR_H
 typedef struct s_vect

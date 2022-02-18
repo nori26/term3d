@@ -9,7 +9,6 @@
 /*   Updated: 2022/02/17 11:18:05 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef UTILS_H
 # define UTILS_H
 typedef struct s_points	t_points;

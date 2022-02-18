@@ -9,7 +9,6 @@
 /*   Updated: 2022/02/17 11:17:54 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef ADJUST_H
 # define ADJUST_H
 typedef struct s_points	t_points;
