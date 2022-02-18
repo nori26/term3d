@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_to_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42    </var/mail/user42>               +#+  +:+       +#+        */
+/*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 04:29:07 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 04:29:07 by user42           ###   ########.fr       */
+/*   Updated: 2022/02/18 13:39:58 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@
 static void	remove_empty_line(t_clist *lines)
 {
 	char	*line;
+	t_clist	*next;
 
 	lines = ft_clstfirst(lines);
 	while (!ft_clst_isend(lines))
 	{
+		next = lines->next;
 		line = lines->data;
 		if (!*line)
 			ft_clst_popdel(lines, free);
-		lines = lines->next;
+		lines = next;
 	}
 }
 
