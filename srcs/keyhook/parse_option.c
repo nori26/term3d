@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 11:17:48 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:15:53 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,24 @@
 
 static void	set_rotate_speed(int key_input, t_option *option)
 {
-	if (ft_strchr("wasd ", key_input))
-		option->rotate_speed = key_input;
+	if (key_input == 'w')
+		option->rotate_speed = FAST;
+	else if (key_input == 's')
+		option->rotate_speed = SLOW;
+	else if (key_input == 'a')
+		option->rotate_speed = LEFT;
+	else if (key_input == 'd')
+		option->rotate_speed = RIGHT;
+	else if (key_input == ' ')
+		option->rotate_speed = PAUSE;
 }
 
 static void	set_zoom_rate(int key_input, t_option *option)
 {
-	if (key_input == 'i' || key_input == 'o')
-		option->zoom_rate = key_input;
+	if (key_input == 'i')
+		option->zoom_rate = ZOOM_IN;
+	else if (key_input == 'o')
+		option->zoom_rate = ZOOM_OUT;
 }
 
 static void	set_reset_flag(int key_input, t_option *option)

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42    </var/mail/user42>               +#+  +:+       +#+        */
+/*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 09:31:31 by user42           ###   ########.fr       */
+/*   Updated: 2022/02/19 16:18:05 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "keyhook.h"
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
@@ -44,8 +45,8 @@ static void	zoom_out(t_points *points)
 
 void	zoom_object(char option, t_points *points)
 {
-	if (option == 'i')
+	if (option == ZOOM_IN)
 		zoom_in(points);
-	else if (option == 'o')
+	else if (option == ZOOM_OUT)
 		zoom_out(points);
 }

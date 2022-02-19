@@ -6,11 +6,12 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 02:49:04 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:17:30 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include "keyhook.h"
 #include "draw.h"
 #include "vector.h"
 #include "term3d.h"
@@ -40,11 +41,11 @@ void	set_rotation_angle(char option)
 	double			angle;
 
 	angle = get_rotation_angle();
-	if (option == 'w' || option == 's')
+	if (option == FAST || option == SLOW)
 		angle = update_angle_level(angle, option);
-	else if ((option == 'a' && angle > 0) || (option == 'd' && angle < 0))
+	else if ((option == LEFT && angle > 0) || (option == RIGHT && angle < 0))
 		angle *= -1;
-	else if (option == ' ')
+	else if (option == PAUSE)
 		angle = toggle_rotation(angle);
 	rotation_angle_storage(angle, true);
 }
