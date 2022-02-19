@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:19 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 02:49:39 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 02:53:55 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "phi.h"
 #include "draw.h"
 
-int	get_angle_sign(double angle)
+static int	get_angle_sign(double angle)
 {
 	if (angle > 0)
 		return (1);
