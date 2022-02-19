@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 02:34:21 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 03:10:13 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define SCREEN_WIDTH	65
 typedef struct s_points	t_points;
 typedef struct s_option	t_option;
-typedef size_t			t_screen[SCREEN_HEIGHT][SCREEN_WIDTH];
+typedef size_t			t_screen[SCREEN_HEIGHT + 1][SCREEN_WIDTH + 1];
 
 _Noreturn void	draw(t_points *points);
 double			update_angle_level(double angle, char option);
