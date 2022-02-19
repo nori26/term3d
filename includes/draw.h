@@ -6,9 +6,10 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 11:17:55 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 02:34:21 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef DRAW_H
 # define DRAW_H
 # include <stdbool.h>
@@ -20,12 +21,13 @@ typedef struct s_option	t_option;
 typedef size_t			t_screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 _Noreturn void	draw(t_points *points);
-double			get_angle_w_s(double angle, char option);
+double			update_angle_level(double angle, char option);
 double			get_rotation_angle(void);
 void			fill_screen_with_points(t_screen screen, t_points *points);
 void			init_screen(t_screen screen);
 void			print_screen(t_screen screen);
 void			reset_rotation_angle(void);
+double			toggle_rotation(double angle);
 void			rotate_z(t_points *points);
 void			set_rotation_angle(char option);
 void			zoom_object(char option, t_points *points);

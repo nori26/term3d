@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/18 13:59:26 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 02:49:04 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,15 @@ double	get_rotation_angle(void)
 
 void	set_rotation_angle(char option)
 {
-	static double	prev = PHI;
 	double			angle;
 
 	angle = get_rotation_angle();
 	if (option == 'w' || option == 's')
-		angle = get_angle_w_s(angle, option);
+		angle = update_angle_level(angle, option);
 	else if ((option == 'a' && angle > 0) || (option == 'd' && angle < 0))
 		angle *= -1;
 	else if (option == ' ')
-	{
-		if (angle)
-		{
-			prev = get_rotation_angle();
-			angle = 0;
-		}
-		else
-			angle = prev;
-	}
+		angle = toggle_rotation(angle);
 	rotation_angle_storage(angle, true);
 }
 
