@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42    </var/mail/user42>               +#+  +:+       +#+        */
+/*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 10:23:22 by user42           ###   ########.fr       */
+/*   Updated: 2022/02/19 04:02:08 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ _Noreturn void	draw(t_points *points)
 	t_points	base;
 	t_option	option;
 
+	option = (t_option){};
 	base = create_points_copy(points);
 	while (true)
 	{
-		hook_key_input(&option);
+		// hook_key_input(&option);
 		alter_coordinate(points, &base, &option);
 		draw_object(points);
 		usleep(10000);

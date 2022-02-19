@@ -6,18 +6,16 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 03:22:57 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 04:00:42 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 #include "draw.h"
 
+#include <unistd.h>
 #define TERM_CLEAR "\033c"
-#define ENDLINE		1
-
 static char	get_screen_char(size_t density)
 {
 	const char		*set = " :;=co+xanm.";
@@ -31,6 +29,28 @@ static char	get_screen_char(size_t density)
 	return (set[idx]);
 }
 
+// void	print_screen(t_screen screen)
+// {
+// 	char	c;
+// 	size_t	x;
+// 	size_t	y;
+
+// 	printf(TERM_CLEAR);
+// 	y = 0;
+// 	while (y < SCREEN_HEIGHT)
+// 	{
+// 		x = 0;
+// 		while (x < SCREEN_WIDTH)
+// 		{
+// 			c = get_screen_char(screen[y][x]);
+// 			putchar(c);
+// 			x++;
+// 		}
+// 		putchar('\n');
+// 		y++;
+// 	}
+// }
+#define ENDLINE 1
 void	print_screen(t_screen screen)
 {
 	size_t	i;
@@ -52,5 +72,11 @@ void	print_screen(t_screen screen)
 		object[i++] = '\n';
 		y++;
 	}
+	// i = 0;
+	// while (i < SCREEN_HEIGHT * (SCREEN_WIDTH + ENDLINE))
+	// {
+	// 	putchar(object[i]);
+	// 	i++;
+	// }
 	write(STDOUT_FILENO, object, SCREEN_HEIGHT * (SCREEN_WIDTH + ENDLINE));
 }
