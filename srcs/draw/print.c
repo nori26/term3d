@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 04:00:42 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 04:04:28 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_screen(t_screen screen)
 	size_t	x;
 	size_t	y;
 
-	printf(TERM_CLEAR);
+	write(STDERR_FILENO, TERM_CLEAR, sizeof(TERM_CLEAR) - 1);
 	i = 0;
 	y = 0;
 	while (y < SCREEN_HEIGHT)
