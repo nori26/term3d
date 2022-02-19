@@ -16,7 +16,7 @@
 
 void	hook_key_input(t_option *option)
 {
-	char			key_input;
+	int	key_input;
 
 	key_input = getchar();
 	if (key_input == 'q')
