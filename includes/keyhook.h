@@ -16,8 +16,8 @@
 typedef struct s_option
 {
 	bool	reset;
-	int		rotate_speed;
-	int		zoom_rate;
+	char	rotate_speed;
+	char	zoom_rate;
 }	t_option;
 
 void	hook_key_input(t_option *option);
