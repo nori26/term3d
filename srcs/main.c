@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 04:01:41 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/19 04:06:50 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	set_non_blocking_stdin(void)
 
 	tcgetattr(STDIN_FILENO, &settings);
 	settings.c_lflag &= ~(ECHO | ICANON);
+	settings.c_cc[VTIME] = 0;
+	settings.c_cc[VMIN] = 1;
 	tcsetattr(STDIN_FILENO, TCSANOW, &settings);
 	fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 }
@@ -57,7 +59,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	validate_terminal_size();
-	// set_non_blocking_stdin();
+	set_non_blocking_stdin();
 	points = read_points_from_file(argv[1]);
 	adjust_object_to_screen(&points);
 	draw(&points);
