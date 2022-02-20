@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42    </var/mail/user42>               +#+  +:+       +#+        */
+/*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/17 10:23:22 by user42           ###   ########.fr       */
+/*   Updated: 2022/02/20 19:12:47 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "term3d.h"
 #include "keyhook.h"
 #include "utils.h"
+
+#define TERM_CLEAR "\033[2j"
 
 static void	reset_coordinate(t_points *points, t_points *base)
 {
@@ -65,6 +67,7 @@ _Noreturn void	draw(t_points *points)
 	t_option	option;
 
 	base = create_points_copy(points);
+	puts(TERM_CLEAR);
 	while (true)
 	{
 		hook_key_input(&option);

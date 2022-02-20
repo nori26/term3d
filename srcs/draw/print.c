@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/20 16:27:54 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/20 19:13:31 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include "draw.h"
 
-#define TERM_CLEAR 			"\033[H"
+#define CLEAR	 			"\033[H"
 #define CLEAR_SIZE			4
 #define NEWLINE				1
 #define SCREEN_CHAR_SET		" :;=co+xanm."
@@ -38,7 +38,7 @@ static void set_image(t_screen screen, char *image)
 	size_t	x;
 	size_t	y;
 
-	memcpy(image, TERM_CLEAR, CLEAR_SIZE);
+	memcpy(image, CLEAR, CLEAR_SIZE);
 	image += CLEAR_SIZE;
 	y = 0;
 	while (y < SCREEN_HEIGHT)
