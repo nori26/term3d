@@ -39,9 +39,12 @@ SRC2	=\
 	srcs/input/validate_lines.c\
 
 SRC3	=\
+	srcs/wrapper/ft_fcntl.c\
 	srcs/wrapper/ft_fopen.c\
 	srcs/wrapper/ft_getline.c\
 	srcs/wrapper/ft_strtod.c\
+	srcs/wrapper/ft_tcgetattr.c\
+	srcs/wrapper/ft_tcsetattr.c\
 
 SRC4	=\
 	srcs/adjust/adjust.c\
@@ -62,6 +65,7 @@ SRC6	=\
 	srcs/draw/zoom.c\
 
 SRC7	=\
+	srcs/keyhook/getchar.c\
 	srcs/keyhook/hook_keyinput.c\
 	srcs/keyhook/parse_option.c\
 
