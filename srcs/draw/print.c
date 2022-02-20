@@ -6,7 +6,7 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/20 03:06:04 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:27:54 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include "draw.h"
 
-#define TERM_CLEAR 			"\033c"
+#define TERM_CLEAR 			"\033[H"
 #define CLEAR_SIZE			4
 #define NEWLINE				1
 #define SCREEN_CHAR_SET		" :;=co+xanm."
