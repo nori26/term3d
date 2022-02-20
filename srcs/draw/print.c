@@ -6,15 +6,18 @@
 /*   By: nosuzuki <nosuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:27:09 by user42            #+#    #+#             */
-/*   Updated: 2022/02/19 16:20:35 by nosuzuki         ###   ########.fr       */
+/*   Updated: 2022/02/20 03:06:04 by nosuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "draw.h"
 
 #define TERM_CLEAR 			"\033c"
+#define CLEAR_SIZE			4
+#define NEWLINE				1
 #define SCREEN_CHAR_SET		" :;=co+xanm."
 
 static char	get_screen_char(size_t density)
@@ -30,24 +33,38 @@ static char	get_screen_char(size_t density)
 	return (set[idx]);
 }
 
-void	print_screen(t_screen screen)
+static void set_image(t_screen screen, char *image)
 {
-	char	c;
 	size_t	x;
 	size_t	y;
 
-	printf(TERM_CLEAR);
+	memcpy(image, TERM_CLEAR, CLEAR_SIZE);
+	image += CLEAR_SIZE;
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			c = get_screen_char(screen[y][x]);
-			putchar(c);
+			*image++ = get_screen_char(screen[y][x]);
 			x++;
 		}
-		putchar('\n');
+		*image++ = '\n';
 		y++;
 	}
+}
+
+static void	put_image(char *image)
+{
+	const size_t	len = CLEAR_SIZE + SCREEN_HEIGHT * (SCREEN_WIDTH + NEWLINE);
+
+	write(STDOUT_FILENO, image, len);
+}
+
+void	print_screen(t_screen screen)
+{
+	char 	image[CLEAR_SIZE + SCREEN_HEIGHT * (SCREEN_WIDTH + NEWLINE)];
+
+	set_image(screen, image);
+	put_image(image);
 }
